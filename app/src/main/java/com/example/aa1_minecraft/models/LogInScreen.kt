@@ -36,17 +36,17 @@ import com.example.aa1_minecraft.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier) {
-    var showEncantamiento by remember { mutableStateOf(false) }
+    var mainPage by remember { mutableStateOf(false) }
 
-    if (showEncantamiento) {
-        EncantamientoEscena(modifier = Modifier.fillMaxSize())
+    if (mainPage) {
+        GeneralEscena(modifier = Modifier.fillMaxSize())
     } else {
         Scaffold(
             containerColor = MaterialTheme.colorScheme.background
         ) { innerPadding ->
             LoginContent(
                 modifier = Modifier.padding(innerPadding),
-                onLoginButtonClick = { showEncantamiento = true }
+                onLoginButtonClick = { mainPage = true }
             )
         }
     }

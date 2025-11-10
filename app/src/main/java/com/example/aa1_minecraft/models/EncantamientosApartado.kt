@@ -84,7 +84,12 @@ fun EncantamientoEscena(modifier: Modifier = Modifier) {
                                 Button(
                                     onClick = { encantamientoSelecciodo = listaEncantamientos[i] },
                                     modifier = Modifier
-                                        .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
+                                        .border(
+                                            BorderStroke(
+                                                4.dp,
+                                                MaterialTheme.colorScheme.outline
+                                            )
+                                        )
                                         .size(width = 150.dp, height = 150.dp),
                                     contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
                                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
@@ -117,7 +122,12 @@ fun EncantamientoEscena(modifier: Modifier = Modifier) {
                                     Button(
                                         onClick = { encantamientoSelecciodo = listaEncantamientos[i + 1] },
                                         modifier = Modifier
-                                            .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
+                                            .border(
+                                                BorderStroke(
+                                                    4.dp,
+                                                    MaterialTheme.colorScheme.outline
+                                                )
+                                            )
                                             .size(width = 150.dp, height = 150.dp),
                                         contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
                                         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
@@ -178,7 +188,7 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
             }
         }
         Column(modifier = Modifier
-            .padding(16.dp)
+            .padding(6.dp)
             .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center){
             Row (modifier = Modifier
@@ -189,7 +199,12 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     .weight(1f)
                     .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                     .padding(2.dp)
-                    .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)))
+                    .border(
+                        BorderStroke(
+                            4.dp,
+                            MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                        )
+                    )
                     .fillMaxSize(),
                     contentAlignment = Alignment.Center) {
                     Text(
@@ -203,7 +218,12 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     .weight(1f)
                     .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                     .padding(2.dp)
-                    .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)))
+                    .border(
+                        BorderStroke(
+                            4.dp,
+                            MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                        )
+                    )
                     .fillMaxSize(),
                     contentAlignment = Alignment.Center){
                     Text(
@@ -222,7 +242,12 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     .weight(1f)
                     .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                     .padding(2.dp)
-                    .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)))
+                    .border(
+                        BorderStroke(
+                            4.dp,
+                            MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                        )
+                    )
                     .fillMaxSize(),
                     contentAlignment = Alignment.Center) {
                     Text(
@@ -236,7 +261,12 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     .weight(1f)
                     .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                     .padding(2.dp)
-                    .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)))
+                    .border(
+                        BorderStroke(
+                            4.dp,
+                            MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                        )
+                    )
                     .fillMaxSize(),
                     contentAlignment = Alignment.Center) {
                     Text(
@@ -255,7 +285,12 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     .weight(1f)
                     .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                     .padding(2.dp)
-                    .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)))
+                    .border(
+                        BorderStroke(
+                            4.dp,
+                            MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                        )
+                    )
                     .fillMaxSize(),
                     contentAlignment = Alignment.Center) {
                     Text(
@@ -270,17 +305,28 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                         .weight(1f)
                         .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                         .padding(2.dp)
-                        .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)))
+                        .border(
+                            BorderStroke(
+                                4.dp,
+                                MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                            )
+                        )
                         .fillMaxSize(),
                         contentAlignment = Alignment.Center) {
                         Text(text = "Sí", fontSize = 20.sp, textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onSecondary)
                     }
                 } else {
-                    Box(modifier = Modifier.weight(1f)
+                    Box(modifier = Modifier
+                        .weight(1f)
                         .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                         .padding(2.dp)
-                        .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)))
+                        .border(
+                            BorderStroke(
+                                4.dp,
+                                MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                            )
+                        )
                         .fillMaxSize(),
                         contentAlignment = Alignment.Center){
                         Text(text = "No", fontSize = 20.sp, textAlign = TextAlign.Center,
@@ -296,7 +342,12 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     .weight(1f)
                     .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                     .padding(2.dp)
-                    .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)))
+                    .border(
+                        BorderStroke(
+                            4.dp,
+                            MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                        )
+                    )
                     .fillMaxSize(),
                     contentAlignment = Alignment.Center) {
                     Text(
@@ -310,7 +361,12 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     .weight(1f)
                     .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                     .padding(2.dp)
-                    .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)))
+                    .border(
+                        BorderStroke(
+                            4.dp,
+                            MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                        )
+                    )
                     .fillMaxSize(),
                     contentAlignment = Alignment.Center) {
                     LazyColumn {
@@ -325,9 +381,11 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     }
                 }
             }
+
         }
     }
 }
+
 
 @Preview
 @Composable
