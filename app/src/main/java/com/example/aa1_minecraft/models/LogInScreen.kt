@@ -39,7 +39,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
     var showEncantamiento by remember { mutableStateOf(false) }
 
     if (showEncantamiento) {
-        EncantamientoEscena(modifier = Modifier.fillMaxSize())
+        EncantamientoEscena(modifier = Modifier.fillMaxSize(), navController = navController)
     } else {
         Scaffold(
             containerColor = MaterialTheme.colorScheme.background
@@ -139,4 +139,3 @@ fun LoginContent(
         }
     }
 }
-

@@ -28,10 +28,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+
 //import androidx.navigation.NavController
 
 @Composable
-fun GeneralEscena(modifier: Modifier = Modifier/*, navController: NavController*/) {
+fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -55,7 +57,7 @@ fun GeneralEscena(modifier: Modifier = Modifier/*, navController: NavController*
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Button(
-                        onClick = {/*navController.navigate("encantamientos")*/ }, modifier = Modifier
+                        onClick = {navController.navigate("encantamientos") }, modifier = Modifier
                             .border(BorderStroke(4.dp, Color.Red))
                             .size(width = 150.dp, height = 150.dp),
                         contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
@@ -86,17 +88,8 @@ fun GeneralEscena(modifier: Modifier = Modifier/*, navController: NavController*
                         }
                     }
                     Spacer(modifier = Modifier.height(16.dp))
-                }
-            }
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
                     Button(
-                        onClick = { /* navController.navigate("mobs") */}, modifier = Modifier
+                        onClick = { navController.navigate("mobs")}, modifier = Modifier
                             .border(BorderStroke(4.dp, Color.Red))
                             .size(width = 150.dp, height = 150.dp),
                         contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
@@ -126,7 +119,6 @@ fun GeneralEscena(modifier: Modifier = Modifier/*, navController: NavController*
                             }
                         }
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }

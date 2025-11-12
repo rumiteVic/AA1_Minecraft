@@ -33,12 +33,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 //import androidx.navigation.NavController
 import com.example.aa1_minecraft.clases.DataLoaders
 import com.example.aa1_minecraft.clases.Mobs
 
 @Composable
-fun MobsEscena(modifier: Modifier = Modifier/*, navController: NavController*/) {
+fun MobsEscena(modifier: Modifier = Modifier, navController: NavController) {
     val listaMobs = DataLoaders().loadMobsInfo()
     var mobSelecciodo by remember { mutableStateOf<Mobs?>(null) }
     val encantamientosFinal = listaMobs.filter { it.versionImplementada <= Version.version.toFloat() }
