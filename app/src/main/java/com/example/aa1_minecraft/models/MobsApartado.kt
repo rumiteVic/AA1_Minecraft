@@ -48,11 +48,16 @@ fun MobsEscena(modifier: Modifier = Modifier, navController: NavController, vers
     var mobSelecciodo by remember { mutableStateOf<Mobs?>(null) }
     val mobsFinal = listaMobs.filter { it.versionImplementada <= versionActual }
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background)
-    {
+        containerColor = MaterialTheme.colorScheme.background,
+        bottomBar = {
+            BottomBar( navController = navController)
+        })
+    { innerPadding ->
         Column(modifier = modifier
             .fillMaxSize()
+            .padding(innerPadding)
             .padding(16.dp)){
+            TopTopBar(modifier = Modifier.height(16.dp))
             Spacer(modifier = Modifier.height(16.dp))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))
@@ -121,13 +126,14 @@ fun MobsEscena(modifier: Modifier = Modifier, navController: NavController, vers
                                 }
                             }
                             Spacer(modifier = Modifier.height(16.dp))
+
                         }
+
                     }
                 }
             }
         }
     }
-
 }
 
 @Composable

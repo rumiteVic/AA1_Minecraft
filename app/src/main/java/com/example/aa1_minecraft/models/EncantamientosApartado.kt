@@ -52,14 +52,18 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
 
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background
-    ) { innerPadding ->
+        containerColor = MaterialTheme.colorScheme.background,
+        bottomBar = {
+            BottomBar( navController = navController)
+        })
+    { innerPadding ->
         Column(
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding)
                 .padding(16.dp)
         ) {
+            TopTopBar(modifier = Modifier.height(16.dp))
             Spacer(modifier = Modifier.height(16.dp))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))
@@ -183,7 +187,7 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
             Spacer(modifier = Modifier.width(16.dp))
             Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(modifier = Modifier.height(5.dp))
-                Text(text = encantamiento.encantamiento.nombre, textAlign = TextAlign.Center, fontSize = 28.sp)
+                Text(text = encantamiento.encantamiento.nombre, textAlign = TextAlign.Center, fontSize = 22.sp)
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(text = encantamiento.efecto, textAlign = TextAlign.Center)
             }
