@@ -30,17 +30,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
-//import androidx.navigation.NavController
-
 @Composable
-fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController) {
+fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
         Spacer(modifier = Modifier.height(16.dp))
-        TopBar()
+        TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
         Spacer(modifier = Modifier.height(16.dp))
         LazyColumn(
             verticalArrangement = Arrangement.Center,

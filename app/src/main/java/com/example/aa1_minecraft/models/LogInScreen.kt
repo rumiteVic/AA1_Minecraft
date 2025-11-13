@@ -30,23 +30,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-//import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavController
 import com.example.aa1_minecraft.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit) {
     var showEncantamiento by remember { mutableStateOf(false) }
 
     if (showEncantamiento) {
-        EncantamientoEscena(modifier = Modifier.fillMaxSize(), navController = navController)
+        EncantamientoEscena(
+            modifier, navController, versionActual = versionActual, onVersionChange = onVersionChange)
     } else {
         Scaffold(
             containerColor = MaterialTheme.colorScheme.background
         ) { innerPadding ->
             LoginContent(
-                modifier = Modifier.padding(innerPadding),
-                onLoginButtonClick = { showEncantamiento = true }
+                modifier = Modifier.padding(innerPadding), navController
             )
         }
     }
@@ -56,7 +56,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
 @Composable
 fun LoginContent(
     modifier: Modifier = Modifier,
-    onLoginButtonClick: () -> Unit
+    navController: NavController
 ) {
     Column(
         modifier = modifier
@@ -113,7 +113,9 @@ fun LoginContent(
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = onLoginButtonClick,
+            onClick = {
+                navController.navigate("general")
+            },
             modifier = Modifier
                 .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
                 .size(width = 150.dp, height = 50.dp),
@@ -126,7 +128,7 @@ fun LoginContent(
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = onLoginButtonClick,
+            onClick = {navController.navigate("general") },
             modifier = Modifier
                 .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
                 .size(width = 150.dp, height = 50.dp),

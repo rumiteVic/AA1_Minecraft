@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AA1_MinecraftTheme(darkTheme = true, dynamicColor = false) {
                 //Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                LoginScreen()
+                NavigationWrapper(modifier = Modifier)
                 //EncantamientoEscena(modifier = Modifier.padding(innerPadding))
                 //}
             }

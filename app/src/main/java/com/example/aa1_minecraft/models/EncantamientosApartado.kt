@@ -45,10 +45,10 @@ import com.example.aa1_minecraft.clases.Encantamientos
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavController) {
+fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit) {
     val listaEncantamientos = DataLoaders().loadEncantamientosInfo()
     var encantamientoSelecciodo by remember { mutableStateOf<Encantamientos?>(null) }
-    val encantamientosFinal = listaEncantamientos.filter { it.versionImplementada <= Version.version.toFloat() }
+    val encantamientosFinal = listaEncantamientos.filter { it.versionImplementada <= versionActual }
 
 
     Scaffold(
@@ -61,7 +61,7 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                 .padding(16.dp)
         ) {
             Spacer(modifier = Modifier.height(16.dp))
-            TopBar()
+            TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))
 
             if (encantamientoSelecciodo != null) {
@@ -83,7 +83,7 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Button(
-                                    onClick = { encantamientoSelecciodo = listaEncantamientos[i] },
+                                    onClick = { encantamientoSelecciodo = encantamientosFinal[i] },
                                     modifier = Modifier
                                         .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
                                         .size(width = 150.dp, height = 150.dp),
@@ -93,7 +93,7 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                 ) {
                                     Box(modifier = Modifier.fillMaxSize()) {
                                         Image(
-                                            painter = painterResource(id = listaEncantamientos[i].imageResourceID),
+                                            painter = painterResource(id = encantamientosFinal[i].imageResourceID),
                                             contentDescription = null,
                                             modifier = Modifier.fillMaxSize()
                                         )
@@ -104,7 +104,7 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                                 .padding(bottom = 5.dp)
                                         ) {
                                             Text(
-                                                text = listaEncantamientos[i].encantamiento.nombre,
+                                                text = encantamientosFinal[i].encantamiento.nombre,
                                                 modifier = Modifier
                                                     .fillMaxWidth()
                                                     .background(MaterialTheme.colorScheme.onSecondaryContainer),
@@ -114,9 +114,9 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                         }
                                     }
                                 }
-                                if (i + 1 < listaEncantamientos.size) {
+                                if (i + 1 < encantamientosFinal.size) {
                                     Button(
-                                        onClick = { encantamientoSelecciodo = listaEncantamientos[i + 1] },
+                                        onClick = { encantamientoSelecciodo = encantamientosFinal[i + 1] },
                                         modifier = Modifier
                                             .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
                                             .size(width = 150.dp, height = 150.dp),
@@ -126,7 +126,7 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                     ) {
                                         Box(modifier = Modifier.fillMaxSize()) {
                                             Image(
-                                                painter = painterResource(id = listaEncantamientos[i + 1].imageResourceID),
+                                                painter = painterResource(id = encantamientosFinal[i + 1].imageResourceID),
                                                 contentDescription = null,
                                                 modifier = Modifier.fillMaxSize()
                                             )
@@ -137,7 +137,7 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                                     .padding(bottom = 5.dp)
                                             ) {
                                                 Text(
-                                                    text = listaEncantamientos[i + 1].encantamiento.nombre,
+                                                    text = encantamientosFinal[i + 1].encantamiento.nombre,
                                                     modifier = Modifier
                                                         .fillMaxWidth()
                                                         .background(MaterialTheme.colorScheme.onSecondaryContainer),
