@@ -57,7 +57,7 @@ fun MobsEscena(modifier: Modifier = Modifier, navController: NavController, vers
             .fillMaxSize()
             .padding(innerPadding)
             .padding(16.dp)){
-            TopTopBar(modifier = Modifier.height(16.dp))
+            TopTopBar(modifier = Modifier.height(16.dp),2)
             Spacer(modifier = Modifier.height(16.dp))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))

@@ -48,7 +48,7 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                 .padding(innerPadding)
                 .padding(16.dp)
         ) {
-            TopTopBar(modifier = Modifier.height(16.dp))
+            TopTopBar(modifier = Modifier.height(16.dp),3)
             Spacer(modifier = Modifier.height(16.dp))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))

@@ -65,7 +65,7 @@ fun LoginContent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "NOMBRE DEL APP",
+            text = "MICOMPICRAFT",
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.onBackground,
         )

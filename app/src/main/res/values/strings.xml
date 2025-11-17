@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AA1_Minecraft</string>
+
+    <string name="NameMainMenu"> Menu Principal </string>
+    <string name="NameEncantamientos"> Encantamientos </string>
+    <string name="nameENTIdades"> Entidades </string>
+    <string name="nameNavegador"> Navegador </string>
+    <string name="nameCrafteo"> Crafteo </string>
+    <string name="nameMapa"> Semilla Mapeable </string>
+    <string name="nameSkins"> Skins </string>
 </resources>

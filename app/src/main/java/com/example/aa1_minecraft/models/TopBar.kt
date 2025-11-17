@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aa1_minecraft.R
@@ -64,13 +65,28 @@ fun TopBar(versionActual: Float, onVersionChange: (Float) -> Unit){
 }
 
 @Composable
-fun TopTopBar(modifier: Modifier = Modifier) {
+fun TopTopBar(modifier: Modifier = Modifier, nameEscenaID: Int) {
+    val listaVentanas: List<Int> = listOf(
+        R.string.NameMainMenu,
+        R.string.NameEncantamientos,
+        R.string.nameENTIdades,
+        R.string.nameNavegador,
+        R.string.nameCrafteo,
+        R.string.nameMapa,
+        R.string.nameSkins
+    )
+
     var expanded by remember {mutableStateOf(false)}
     val desplegable = listOf("Opciones", "Idioma", "Tema")
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
         Image(modifier = Modifier.weight(0.25f) .size(45.dp),
             painter = painterResource(id = R.drawable.plains_grass_block), contentDescription = null)
-        Text(modifier = Modifier.weight(0.5f), text = "Minecraft APP", fontSize = 25.sp)
+        Text(
+            text = stringResource(listaVentanas[nameEscenaID]),
+            modifier = Modifier.weight(0.5f),
+            fontSize = 25.sp
+        )
+
         Button(onClick = { expanded =!expanded }, modifier = Modifier
             .weight(0.25f)
             .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
