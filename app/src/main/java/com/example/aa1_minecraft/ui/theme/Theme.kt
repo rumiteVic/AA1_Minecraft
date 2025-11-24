@@ -15,6 +15,46 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontWeight
+import com.example.aa1_minecraft.R
+
+
+val MinecraftFontFamily = FontFamily(
+    Font(R.font.minecraftitles, weight = FontWeight.Normal),
+)
+
+val MinecraftTenFontFamily = FontFamily(
+    Font(R.font.minecraftnormal, weight = FontWeight.Normal),
+)
+
+val AppTypography = Typography(
+    bodyLarge = TextStyle(
+        fontFamily = MinecraftFontFamily,
+        fontSize = 16.sp
+    ),
+    bodyMedium = TextStyle(
+        fontFamily = MinecraftFontFamily,
+        fontSize = 14.sp
+    ),
+    titleLarge = TextStyle(
+        fontFamily = MinecraftTenFontFamily,
+        fontSize = 22.sp
+    ),
+    titleMedium = TextStyle(
+        fontFamily = MinecraftTenFontFamily,
+        fontSize = 18.sp
+    ),
+    labelLarge = TextStyle(
+        fontFamily = MinecraftFontFamily,
+        fontSize = 14.sp
+    )
+)
+
+
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
@@ -232,7 +272,7 @@ fun AA1_MinecraftTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = typography,
+        typography = AppTypography,
         content = content
     )
 }

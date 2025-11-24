@@ -116,6 +116,7 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                                 text = encantamientosFinal[i].encantamiento.nombre,
                                                 modifier = Modifier
                                                     .fillMaxWidth()
+                                                    .padding(4.dp)
                                                     .background(MaterialTheme.colorScheme.onSecondaryContainer),
                                                 textAlign = TextAlign.Center,
                                                 color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -154,6 +155,7 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                                     text = encantamientosFinal[i + 1].encantamiento.nombre,
                                                     modifier = Modifier
                                                         .fillMaxWidth()
+                                                        .padding(4.dp)
                                                         .background(MaterialTheme.colorScheme.onSecondaryContainer),
                                                     textAlign = TextAlign.Center,
                                                     color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -177,12 +179,12 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(16.dp)) {
-        Spacer(modifier = Modifier.height(16.dp))
+
         Row(modifier = Modifier.padding(16.dp)) {
             Image(
                 painter = painterResource(id = encantamiento.imageResourceID),
                 contentDescription = null,
-                modifier = Modifier.size(150.dp)
+                modifier = Modifier.size(100.dp)
             )
             Spacer(modifier = Modifier.width(16.dp))
             Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
@@ -216,7 +218,9 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                         text = "Nivel máximo",
                         fontSize = 20.sp,
                         textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSecondary
+                        color = MaterialTheme.colorScheme.onSecondary,
+                        modifier = Modifier
+                            .padding(10.dp)
                     )
                 }
                 Box(modifier = Modifier
@@ -235,7 +239,9 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                         text = encantamiento.nivelMaximo.toString(),
                         fontSize = 20.sp,
                         textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSecondary
+                        color = MaterialTheme.colorScheme.onSecondary,
+                        modifier = Modifier
+                            .padding(10.dp)
                     )
                 }
             }
@@ -259,7 +265,9 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                         text = "Peso encantamiento",
                         fontSize = 20.sp,
                         textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSecondary
+                        color = MaterialTheme.colorScheme.onSecondary,
+                        modifier = Modifier
+                            .padding(10.dp)
                     )
                 }
                 Box(modifier = Modifier
@@ -278,7 +286,9 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                         text = encantamiento.pesoEncantamiento.toString(),
                         fontSize = 20.sp,
                         textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSecondary
+                        color = MaterialTheme.colorScheme.onSecondary,
+                        modifier = Modifier
+                            .padding(10.dp)
                     )
                 }
             }
@@ -300,9 +310,10 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     contentAlignment = Alignment.Center) {
                     Text(
                         text = "Se encuentra \nsolo en tesoros",
-                        fontSize = 20.sp,
+                        fontSize = 15.sp,
                         textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSecondary
+                        color = MaterialTheme.colorScheme.onSecondary,
+
                     )
                 }
                 if (encantamiento.halladoEnTesoro) {
@@ -319,7 +330,9 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                         .fillMaxSize(),
                         contentAlignment = Alignment.Center) {
                         Text(text = "Sí", fontSize = 20.sp, textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.onSecondary)
+                            color = MaterialTheme.colorScheme.onSecondary,
+                            modifier = Modifier
+                                .padding(10.dp))
                     }
                 } else {
                     Box(modifier = Modifier
@@ -335,7 +348,9 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                         .fillMaxSize(),
                         contentAlignment = Alignment.Center){
                         Text(text = "No", fontSize = 20.sp, textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.onSecondary)
+                            color = MaterialTheme.colorScheme.onSecondary,
+                            modifier = Modifier
+                                .padding(10.dp))
                     }
                 }
             }
@@ -357,9 +372,11 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     contentAlignment = Alignment.Center) {
                     Text(
                         text = "Disponible en los siguientes items",
-                        fontSize = 20.sp,
+                        fontSize = 15.sp,
                         textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSecondary
+                        color = MaterialTheme.colorScheme.onSecondary,
+                        modifier = Modifier
+                            .padding(10.dp)
                     )
                 }
                 Box(modifier = Modifier
@@ -378,7 +395,9 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                         item{
                             for (item in encantamiento.encantamiento.itemsCompatibles) {
                                 Text(text = item.nombre, fontSize = 20.sp, textAlign = TextAlign.Center,
-                                    color = MaterialTheme.colorScheme.onSecondary)
+                                    color = MaterialTheme.colorScheme.onSecondary,
+                                    modifier = Modifier
+                                        .padding(5.dp))
                                 Spacer(modifier = Modifier.height(2.dp))
                             }
                         }
