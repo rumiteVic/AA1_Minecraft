@@ -37,6 +37,13 @@ fun NavigationWrapper(modifier: Modifier = Modifier) {
                 versionActual = version,
                 onVersionChange = { version = it })
         }
+        composable(route = "Biomas") {
+            BiomasEscena(
+                modifier,
+                navController,
+                versionActual = version,
+                onVersionChange = { version = it })
+        }
         composable(route = "general") {
             GeneralEscena(
                 modifier,

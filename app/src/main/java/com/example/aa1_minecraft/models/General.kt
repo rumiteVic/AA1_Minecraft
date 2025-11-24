@@ -188,6 +188,43 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                             }
                         }
                         Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = { navController.navigate("biomas") },
+                            modifier = Modifier
+                                .border(
+                                    BorderStroke(
+                                        4.dp,
+                                        MaterialTheme.colorScheme.outline
+                                    )
+                                )
+                                .size(width = 150.dp, height = 150.dp),
+                            contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                            shape = RoundedCornerShape(0.dp)
+                        ) {
+                            Box(modifier = Modifier.fillMaxSize()) {
+                                Image(
+                                    painter = painterResource(R.drawable.biomas),
+                                    contentDescription = null,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .align(Alignment.BottomCenter)
+                                        .padding(bottom = 5.dp)
+                                ) {
+                                    Text(
+                                        text = "BIOMAS",
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .background(MaterialTheme.colorScheme.onSecondaryContainer),
+                                        textAlign = TextAlign.Center,
+                                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             }
