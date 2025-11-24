@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aa1_minecraft.R
@@ -84,9 +85,10 @@ fun TopTopBar(modifier: Modifier = Modifier, nameEscenaID: Int) {
         Text(
             text = stringResource(listaVentanas[nameEscenaID]),
             modifier = Modifier.weight(0.5f),
-            fontSize = 25.sp
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
         )
-
+        Spacer(modifier = Modifier.width(2.dp))
         Button(onClick = { expanded =!expanded }, modifier = Modifier
             .weight(0.25f)
             .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))

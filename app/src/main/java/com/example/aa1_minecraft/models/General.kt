@@ -144,6 +144,8 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                     }
                 }
                 item {
+
+                    Spacer(modifier = Modifier.height(16.dp))
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
