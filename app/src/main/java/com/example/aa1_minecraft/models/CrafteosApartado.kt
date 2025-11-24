@@ -46,7 +46,6 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
             crafteosFinal.find { it.name == "Mesa de crafteo" }
         )
     }
-    val indiceAleatorio = Random.nextInt(crafteosFinal.size)
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
@@ -56,31 +55,41 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
         Column(modifier = modifier
             .fillMaxSize()
             .padding(innerPadding)
-            .padding(16.dp)){
+            .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally){
             TopTopBar(modifier = Modifier.height(16.dp),2)
             Spacer(modifier = Modifier.height(16.dp))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))
             CrafteoConcreto(crafteo = crafteoSeleccionado!!)
             Button(onClick = { val nuevoIndice = Random.nextInt(crafteosFinal.size)
-                             crafteoSeleccionado = crafteosFinal[nuevoIndice]}, modifier = Modifier){
+                crafteoSeleccionado = crafteosFinal[nuevoIndice]}, modifier = Modifier){
                 Text(text = "Craft", fontSize = 20.sp)
             }
         }
     }
 }
 
+
 @Composable
 fun CrafteoConcreto(crafteo: Crafteos, modifier: Modifier = Modifier){
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(16.dp)){
-        Image(painter = painterResource(id = crafteo.imageResourceID), contentDescription = null, modifier = Modifier.size(150.dp))
-        Spacer(modifier = Modifier.width(16.dp))
         Text(text = crafteo.name, modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.onSecondaryContainer),
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onPrimaryContainer)
+        Spacer(modifier = Modifier.width(16.dp))
+        Image(painter = painterResource(id = crafteo.imageResourceID), contentDescription = null, modifier = Modifier.size(150.dp))
+        if(crafteo.description != null) {
+            Text(text = crafteo.description, modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.onSecondaryContainer),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onPrimaryContainer)
+        }
+
     }
-}
+} 

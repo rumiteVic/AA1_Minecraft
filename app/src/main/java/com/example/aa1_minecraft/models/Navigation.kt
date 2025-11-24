@@ -44,6 +44,14 @@ fun NavigationWrapper(modifier: Modifier = Modifier) {
                 versionActual = version,
                 onVersionChange = { version = it })
         }
+        composable(route = "crafteos") {
+            CrafteosApartado(
+                modifier,
+                navController,
+                versionActual = version,
+                onVersionChange = { version = it })
+        }
 
     }
 }
+

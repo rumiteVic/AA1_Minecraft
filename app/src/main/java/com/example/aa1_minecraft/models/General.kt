@@ -143,6 +143,53 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                         }
                     }
                 }
+                item {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Button(
+                            onClick = { navController.navigate("crafteos") },
+                            modifier = Modifier
+                                .border(
+                                    BorderStroke(
+                                        4.dp,
+                                        MaterialTheme.colorScheme.outline
+                                    )
+                                )
+                                .size(width = 150.dp, height = 150.dp),
+                            contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                            shape = RoundedCornerShape(0.dp)
+                        ) {
+                            Box(modifier = Modifier.fillMaxSize()) {
+                                Image(
+                                    painter = painterResource(R.drawable.mesa_crafteo),
+                                    contentDescription = null,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .align(Alignment.BottomCenter)
+                                        .padding(bottom = 5.dp)
+                                ) {
+                                    Text(
+                                        text = "CRAFTEOS",
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .background(MaterialTheme.colorScheme.onSecondaryContainer),
+                                        textAlign = TextAlign.Center,
+                                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
+                                }
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+                }
             }
         }
     }
