@@ -1,6 +1,7 @@
 package com.example.aa1_minecraft.clases
 
 import com.example.aa1_minecraft.R
+import com.example.aa1_minecraft.classes.Crafteos
 
 class DataLoaders (){
     fun loadEncantamientosInfo() : List<Encantamientos>{
@@ -19,6 +20,12 @@ class DataLoaders (){
             Mobs("Pollo", 2, null, "El pollo es un mob pacífico incapaz de volar, solo planea en su caída", "Huevo, Carne de Pollo", MobPacifico.PASIVO, 1.7f, R.drawable.chicken),
             Mobs("Enderman", 20, 5f, "El Enderman es un mob neutral, puede teletransportarse y agarrar una serie de bloques.", "Enderperla", MobPacifico.NEUTRAL, 1.8f, R.drawable.enderman),
             Mobs("Zombie", 10, 3f, "El Zombie es una criatura muerta, la cual aparece usualmente en grupos", "Carne podrida", MobPacifico.HOSTIL, 1.7f, R.drawable.zombie)
+        )
+    }
+    fun loadCrafteosInfo() : List<Crafteos> {
+        return listOf(
+            Crafteos("Mesa de crafteo", "Puede usarse cualquier placa de madera" ,1.7f,R.drawable.mesa_crafteo),
+            Crafteos("Madera", null, 1.7f,R.drawable.mesa_crafteo)
         )
     }
 }
