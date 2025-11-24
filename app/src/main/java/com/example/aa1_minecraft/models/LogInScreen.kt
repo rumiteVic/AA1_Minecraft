@@ -32,10 +32,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.aa1_minecraft.R
+import com.google.firebase.auth.FirebaseAuth
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit) {
+fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit, auth: FirebaseAuth) {
     var showEncantamiento by remember { mutableStateOf(false) }
 
     if (showEncantamiento) {

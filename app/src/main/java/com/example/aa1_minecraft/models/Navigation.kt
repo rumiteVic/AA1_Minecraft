@@ -9,10 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.FirebaseAuth
 
 
 @Composable
-fun NavigationWrapper(modifier: Modifier = Modifier) {
+fun NavigationWrapper(modifier: Modifier = Modifier, auth: FirebaseAuth) {
     var version by remember { mutableStateOf(1.7f) }
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "login") {
@@ -21,7 +22,8 @@ fun NavigationWrapper(modifier: Modifier = Modifier) {
                 modifier,
                 navController,
                 versionActual = version,
-                onVersionChange = { version = it })
+                onVersionChange = { version = it },
+                auth = auth)
         }
         composable(route = "encantamientos") {
             EncantamientoEscena(

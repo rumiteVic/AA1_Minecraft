@@ -16,15 +16,20 @@ import com.example.aa1_minecraft.models.GeneralEscena
 import com.example.aa1_minecraft.models.LoginScreen
 import com.example.aa1_minecraft.models.NavigationWrapper
 import com.example.compose.AA1_MinecraftTheme
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
+private lateinit var auth: FirebaseAuth
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        auth= Firebase.auth
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
         setContent {
             AA1_MinecraftTheme(darkTheme = true, dynamicColor = false) {
                 //Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                NavigationWrapper(modifier = Modifier)
+                NavigationWrapper(modifier = Modifier, auth)
                 //EncantamientoEscena(modifier = Modifier.padding(innerPadding))
                 //}
             }
@@ -38,6 +43,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     AA1_MinecraftTheme {
-        NavigationWrapper(modifier = Modifier)
+        NavigationWrapper(modifier = Modifier, auth)
     }
 }
