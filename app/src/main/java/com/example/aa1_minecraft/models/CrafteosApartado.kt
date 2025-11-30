@@ -53,6 +53,9 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
             crafteosFinal.find { it.name == "Mesa de crafteo" }
         )
     }
+    var query by remember { mutableStateOf("") }
+    val filteredList = crafteosFinal.filter { it.name.contains(query, ignoreCase = true) }
+
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
@@ -86,7 +89,15 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
             }
             Spacer(modifier = Modifier.height(16.dp))
             var text by remember { mutableStateOf("Buscar recetas") }
-            TextField(value = text, onValueChange = {text = it}, modifier = Modifier.fillMaxWidth())
+            TextField(
+                value = query,
+                onValueChange = { texto ->
+                    query = texto
+                    crafteoSeleccionado = filteredList.firstOrNull()
+                },
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = { Text("Buscar recetas") }
+            )
         }
     }
 }
