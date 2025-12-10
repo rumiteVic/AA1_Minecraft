@@ -45,7 +45,7 @@ import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit) {
+fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit, onThemeToggle: () -> Unit) {
     val listaCrafteos = DataLoaders().loadCrafteosInfo()
     val crafteosFinal = listaCrafteos.filter { it.versionImplementada <= versionActual }
     var crafteoSeleccionado by remember {
@@ -54,7 +54,7 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
         )
     }
     var query by remember { mutableStateOf("") }
-    val filteredList = crafteosFinal.filter { it.name.contains(query, ignoreCase = true) }
+    val listaFiltrada = crafteosFinal.filter { it.name.contains(query, ignoreCase = true) }
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -67,7 +67,7 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
             .padding(innerPadding)
             .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally){
-            TopTopBar(modifier = Modifier.height(16.dp),4)
+            TopTopBar(modifier = Modifier.height(16.dp),4, onThemeToggle = onThemeToggle)
             Spacer(modifier = Modifier.height(16.dp))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))
@@ -93,7 +93,7 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
                 value = query,
                 onValueChange = { texto ->
                     query = texto
-                    crafteoSeleccionado = filteredList.firstOrNull()
+                    crafteoSeleccionado = listaFiltrada.firstOrNull()
                 },
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("Buscar recetas") }

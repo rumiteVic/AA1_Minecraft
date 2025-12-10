@@ -1,9 +1,11 @@
 package com.example.aa1_minecraft.models
 
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -62,12 +64,12 @@ fun TopBar(versionActual: Float, onVersionChange: (Float) -> Unit){
         }
         Spacer(modifier = Modifier.width(16.dp))
         var text by remember { mutableStateOf("Buscar") }
-        TextField(value = text, onValueChange = {text = it}, modifier = Modifier.fillMaxWidth())
+        TextField(value = text, onValueChange = {text = it}, modifier = Modifier.fillMaxWidth(), placeholder = { Text("Buscar") })
     }
 }
 
 @Composable
-fun TopTopBar(modifier: Modifier = Modifier, nameEscenaID: Int) {
+fun TopTopBar(modifier: Modifier = Modifier, nameEscenaID: Int, onThemeToggle: () -> Unit) {
     val listaVentanas: List<Int> = listOf(
         R.string.NameMainMenu,
         R.string.NameEncantamientos,
@@ -107,14 +109,32 @@ fun TopTopBar(modifier: Modifier = Modifier, nameEscenaID: Int) {
                 )
             }
             DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-                desplegable.forEach { item ->
+                desplegable.forEachIndexed { index, item ->
                     DropdownMenuItem(
-                        text = { Text(text = item.toString()) },
-                        onClick = { TODO(); expanded = false })
+                        text = { Text(text = item) },
+                        onClick = {
+                            when (index) {
+                                0 -> hacerOpcionA()
+                                1 -> hacerOpcionB()
+                                2 -> onThemeToggle()
+                                else -> println("Opción sin asignar")
+                            }
+                            expanded = false
+                        }
+                    )
                 }
             }
         }
     }
 }
+
+
+    fun hacerOpcionA() {
+        println("Opción A seleccionada")
+    }
+
+    fun hacerOpcionB() {
+        println("Opción B seleccionada")
+    }
 
 

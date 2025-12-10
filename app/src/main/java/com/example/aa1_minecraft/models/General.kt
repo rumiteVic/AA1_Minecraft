@@ -35,7 +35,7 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit) {
+fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit, onThemeToggle: () -> Unit) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
@@ -48,7 +48,7 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                 .padding(innerPadding)
                 .padding(16.dp)
         ) {
-            TopTopBar(modifier = Modifier.height(16.dp),3)
+            TopTopBar(modifier = Modifier.height(16.dp),3, onThemeToggle = onThemeToggle)
             Spacer(modifier = Modifier.height(16.dp))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))
