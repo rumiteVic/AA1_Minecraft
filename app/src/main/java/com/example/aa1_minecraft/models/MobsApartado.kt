@@ -1,5 +1,6 @@
 package com.example.aa1_minecraft.models
 
+import android.media.MediaPlayer
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
@@ -45,6 +46,9 @@ import androidx.navigation.NavController
 import com.example.aa1_minecraft.clases.DataLoaders
 import com.example.aa1_minecraft.clases.Mobs
 import androidx.compose.animation.with
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.platform.LocalContext
+import com.example.aa1_minecraft.R
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
@@ -153,16 +157,20 @@ fun MobsEscena(modifier: Modifier = Modifier, navController: NavController, vers
 
 @Composable
 fun MobConcreto(mob: Mobs, modifier: Modifier = Modifier){
+    val context = LocalContext.current
+    val audio: MediaPlayer = MediaPlayer.create(context, mob.audioResourceID)
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(16.dp)) {
         Spacer(modifier = Modifier.height(16.dp))
         Row(modifier = Modifier.padding(16.dp)) {
-            Image(
-                painter = painterResource(id = mob.imageResourceID),
-                contentDescription = null,
-                modifier = Modifier.size(150.dp)
-            )
+            IconButton (onClick = { audio.start() }, modifier = Modifier.size(90.dp)){
+                Image(
+                    painter = painterResource(id = mob.imageResourceID),
+                    contentDescription = null,
+                    modifier = Modifier.size(150.dp)
+                )
+            }
             Spacer(modifier = Modifier.width(16.dp))
             Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(modifier = Modifier.height(5.dp))
