@@ -3,6 +3,10 @@ package com.example.aa1_minecraft.models
 import android.media.MediaPlayer
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -47,6 +51,7 @@ import com.example.aa1_minecraft.clases.DataLoaders
 import com.example.aa1_minecraft.clases.Mobs
 import androidx.compose.animation.with
 import androidx.compose.material3.IconButton
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalContext
 import com.example.aa1_minecraft.R
 
@@ -159,16 +164,30 @@ fun MobsEscena(modifier: Modifier = Modifier, navController: NavController, vers
 fun MobConcreto(mob: Mobs, modifier: Modifier = Modifier){
     val context = LocalContext.current
     val audio: MediaPlayer = MediaPlayer.create(context, mob.audioResourceID)
+
+    var isPressed by remember { mutableStateOf(false) }
+
+    val animation by animateFloatAsState(
+        targetValue = if (isPressed) 1.1f else 1f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
+
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(16.dp)) {
         Spacer(modifier = Modifier.height(16.dp))
         Row(modifier = Modifier.padding(16.dp)) {
-            IconButton (onClick = { audio.start() }, modifier = Modifier.size(90.dp)){
+            IconButton (
+                onClick = {
+                    isPressed = !isPressed
+                    audio.start()}, modifier = Modifier.size(90.dp)){
                 Image(
                     painter = painterResource(id = mob.imageResourceID),
                     contentDescription = null,
-                    modifier = Modifier.size(150.dp)
+                    modifier = Modifier.size(150.dp).scale(animation)
                 )
             }
             Spacer(modifier = Modifier.width(16.dp))
