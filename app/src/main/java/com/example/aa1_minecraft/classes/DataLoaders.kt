@@ -1,6 +1,7 @@
 package com.example.aa1_minecraft.clases
 
 import com.example.aa1_minecraft.R
+import com.example.aa1_minecraft.classes.BibliotecaInfo
 import com.example.aa1_minecraft.classes.Crafteos
 
 class DataLoaders (){
@@ -25,6 +26,25 @@ class DataLoaders (){
         return listOf(
             Crafteos("Mesa de crafteo", "Puede usarse cualquier placa de madera" ,1.7f,R.drawable.mesa_crafteo),
             Crafteos("Madera", null, 1.7f,R.drawable.mesa_crafteo)
+        )
+    }
+    fun loadBibliotecaInfo() : List<BibliotecaInfo>{
+        return listOf(
+            BibliotecaInfo(
+                title = "ENCANTAMIENTOS",
+                imageRes = R.drawable.enchanted,
+                route = "encantamientos"
+            ),
+            BibliotecaInfo(
+                title = "MOBS",
+                imageRes = R.drawable.chicken,
+                route = "mobs"
+            ),
+            BibliotecaInfo(
+                title = "CRAFTEOS",
+                imageRes = R.drawable.mesa_crafteo,
+                route = "crafteos"
+            )
         )
     }
 }

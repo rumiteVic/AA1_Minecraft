@@ -32,10 +32,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.aa1_minecraft.clases.DataLoaders
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit, onThemeToggle: () -> Unit) {
+    val listaBiblio = DataLoaders().loadBibliotecaInfo()
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
@@ -59,133 +61,90 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                     .fillMaxWidth()
                     .padding(8.dp)
             ) {
-                item {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 8.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Button(
-                            onClick = { navController.navigate("encantamientos") },
+                for (i in 0..(listaBiblio.size - 1) step 2) {
+                    item {
+                        Row(
                             modifier = Modifier
-                                .border(
-                                    BorderStroke(
-                                        4.dp,
-                                        MaterialTheme.colorScheme.outline
-                                    )
-                                )
-                                .size(width = 150.dp, height = 150.dp),
-                            contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                            shape = RoundedCornerShape(0.dp)
+                                .fillMaxWidth()
+                                .padding(horizontal = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Box(modifier = Modifier.fillMaxSize()) {
-                                Image(
-                                    painter = painterResource(R.drawable.enchanted),
-                                    contentDescription = null,
-                                    modifier = Modifier.fillMaxSize()
-                                )
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .align(Alignment.BottomCenter)
-                                        .padding(bottom = 5.dp)
-                                ) {
-                                    Text(
-                                        text = "ENCANTAMIENTOS",
+                            Button(
+                                onClick = { navController.navigate(listaBiblio[i].route) },
+                                modifier = Modifier
+                                    .border(
+                                        BorderStroke(
+                                            4.dp,
+                                            MaterialTheme.colorScheme.outline
+                                        )
+                                    )
+                                    .size(width = 150.dp, height = 150.dp),
+                                contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                                shape = RoundedCornerShape(0.dp)
+                            ) {
+                                Box(modifier = Modifier.fillMaxSize()) {
+                                    Image(
+                                        painter = painterResource(id = listaBiblio[i].imageRes),
+                                        contentDescription = null,
+                                        modifier = Modifier.fillMaxSize()
+                                    )
+                                    Box(
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .background(MaterialTheme.colorScheme.onSecondaryContainer),
-                                        textAlign = TextAlign.Center,
-                                        color = MaterialTheme.colorScheme.onPrimaryContainer
-                                    )
+                                            .align(Alignment.BottomCenter)
+                                            .padding(bottom = 5.dp)
+                                    ) {
+                                        Text(
+                                            text = listaBiblio[i].title,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(4.dp)
+                                                .background(MaterialTheme.colorScheme.onSecondaryContainer),
+                                            textAlign = TextAlign.Center,
+                                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                                        )
+                                    }
                                 }
                             }
-                        }
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Button(
-                            onClick = { navController.navigate("mobs") },
-                            modifier = Modifier
-                                .border(
-                                    BorderStroke(
-                                        4.dp,
-                                        MaterialTheme.colorScheme.outline
-                                    )
-                                )
-                                .size(width = 150.dp, height = 150.dp),
-                            contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                            shape = RoundedCornerShape(0.dp)
-                        ) {
-                            Box(modifier = Modifier.fillMaxSize()) {
-                                Image(
-                                    painter = painterResource(R.drawable.chicken),
-                                    contentDescription = null,
-                                    modifier = Modifier.fillMaxSize()
-                                )
-                                Box(
+                            if (i + 1 < listaBiblio.size) {
+                                Button(
+                                    onClick = { navController.navigate(listaBiblio[i + 1].route) },
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .align(Alignment.BottomCenter)
-                                        .padding(bottom = 5.dp)
+                                        .border(
+                                            BorderStroke(
+                                                4.dp,
+                                                MaterialTheme.colorScheme.outline
+                                            )
+                                        )
+                                        .size(width = 150.dp, height = 150.dp),
+                                    contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                                    shape = RoundedCornerShape(0.dp)
                                 ) {
-                                    Text(
-                                        text = "MOBS",
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .background(MaterialTheme.colorScheme.onSecondaryContainer),
-                                        textAlign = TextAlign.Center,
-                                        color = MaterialTheme.colorScheme.onPrimaryContainer
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-                item {
-
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 8.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Button(
-                            onClick = { navController.navigate("crafteos") },
-                            modifier = Modifier
-                                .border(
-                                    BorderStroke(
-                                        4.dp,
-                                        MaterialTheme.colorScheme.outline
-                                    )
-                                )
-                                .size(width = 150.dp, height = 150.dp),
-                            contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                            shape = RoundedCornerShape(0.dp)
-                        ) {
-                            Box(modifier = Modifier.fillMaxSize()) {
-                                Image(
-                                    painter = painterResource(R.drawable.mesa_crafteo),
-                                    contentDescription = null,
-                                    modifier = Modifier.fillMaxSize()
-                                )
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .align(Alignment.BottomCenter)
-                                        .padding(bottom = 5.dp)
-                                ) {
-                                    Text(
-                                        text = "CRAFTEOS",
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .background(MaterialTheme.colorScheme.onSecondaryContainer),
-                                        textAlign = TextAlign.Center,
-                                        color = MaterialTheme.colorScheme.onPrimaryContainer
-                                    )
+                                    Box(modifier = Modifier.fillMaxSize()) {
+                                        Image(
+                                            painter = painterResource(id = listaBiblio[i + 1].imageRes),
+                                            contentDescription = null,
+                                            modifier = Modifier.fillMaxSize()
+                                        )
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .align(Alignment.BottomCenter)
+                                                .padding(bottom = 5.dp)
+                                        ) {
+                                            Text(
+                                                text = listaBiblio[i + 1].title,
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(4.dp)
+                                                    .background(MaterialTheme.colorScheme.onSecondaryContainer),
+                                                textAlign = TextAlign.Center,
+                                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                                            )
+                                        }
+                                    }
                                 }
                             }
                         }
