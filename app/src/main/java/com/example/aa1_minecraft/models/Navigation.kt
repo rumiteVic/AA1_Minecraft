@@ -12,7 +12,7 @@ import androidx.navigation.compose.rememberNavController
 
 
 @Composable
-fun NavigationWrapper(modifier: Modifier = Modifier) {
+fun NavigationWrapper(modifier: Modifier = Modifier, onThemeToggle: () -> Unit) {
     var version by remember { mutableStateOf(1.7f) }
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "login") {
@@ -21,21 +21,25 @@ fun NavigationWrapper(modifier: Modifier = Modifier) {
                 modifier,
                 navController,
                 versionActual = version,
-                onVersionChange = { version = it })
+                onVersionChange = { version = it },
+                onThemeToggle = onThemeToggle
+            )
         }
         composable(route = "encantamientos") {
             EncantamientoEscena(
                 modifier,
                 navController,
                 versionActual = version,
-                onVersionChange = { version = it })
+                onVersionChange = { version = it },
+                onThemeToggle = onThemeToggle)
         }
         composable(route = "mobs") {
             MobsEscena(
                 modifier,
                 navController,
                 versionActual = version,
-                onVersionChange = { version = it })
+                onVersionChange = { version = it },
+                onThemeToggle = onThemeToggle)
         }
         composable(route = "Biomas") {
             BiomasEscena(
@@ -49,14 +53,16 @@ fun NavigationWrapper(modifier: Modifier = Modifier) {
                 modifier,
                 navController,
                 versionActual = version,
-                onVersionChange = { version = it })
+                onVersionChange = { version = it },
+                onThemeToggle = onThemeToggle)
         }
         composable(route = "crafteos") {
             CrafteosApartado(
                 modifier,
                 navController,
                 versionActual = version,
-                onVersionChange = { version = it })
+                onVersionChange = { version = it },
+                onThemeToggle = onThemeToggle)
         }
 
     }

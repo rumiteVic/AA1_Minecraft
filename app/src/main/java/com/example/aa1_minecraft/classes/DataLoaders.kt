@@ -1,10 +1,8 @@
 package com.example.aa1_minecraft.clases
 
 import com.example.aa1_minecraft.R
-import com.example.aa1_minecraft.classes.Biomas
-import com.example.aa1_minecraft.classes.BiomasDisponibles
+import com.example.aa1_minecraft.classes.BibliotecaInfo
 import com.example.aa1_minecraft.classes.Crafteos
-import com.example.aa1_minecraft.classes.TipoBioma
 
 class DataLoaders (){
     fun loadEncantamientosInfo() : List<Encantamientos>{
@@ -19,9 +17,9 @@ class DataLoaders (){
     }
     fun loadMobsInfo() : List<Mobs>{
         return listOf(
-            Mobs("Pollo", 2, null, "El pollo es un mob pacífico incapaz de volar, solo planea en su caída", "Huevo, Carne de Pollo", MobPacifico.PASIVO, 1.7f, R.drawable.chicken),
-            Mobs("Enderman", 20, 5f, "El Enderman es un mob neutral, puede teletransportarse y agarrar una serie de bloques.", "Enderperla", MobPacifico.NEUTRAL, 1.8f, R.drawable.enderman),
-            Mobs("Zombie", 10, 3f, "El Zombie es una criatura muerta, la cual aparece usualmente en grupos", "Carne podrida", MobPacifico.HOSTIL, 1.7f, R.drawable.zombie)
+            Mobs("Pollo", 2, null, "El pollo es un mob pacífico incapaz de volar, solo planea en su caída", "Huevo, Carne de Pollo", MobPacifico.PASIVO, 1.7f, R.raw.chicken_sound,R.drawable.chicken),
+            Mobs("Enderman", 20, 5f, "El Enderman es un mob neutral, puede teletransportarse y agarrar una serie de bloques.", "Enderperla", MobPacifico.NEUTRAL, 1.8f, R.raw.enderman_sound,R.drawable.enderman),
+            Mobs("Zombie", 10, 3f, "El Zombie es una criatura muerta, la cual aparece usualmente en grupos", "Carne podrida", MobPacifico.HOSTIL, 1.7f, R.raw.zombie_sound,R.drawable.zombie)
         )
     }
     fun loadCrafteosInfo() : List<Crafteos> {
@@ -30,15 +28,23 @@ class DataLoaders (){
             Crafteos("Madera", null, 1.7f,R.drawable.mesa_crafteo)
         )
     }
-    fun loadBiomasInfo() : List<Biomas> {
+    fun loadBibliotecaInfo() : List<BibliotecaInfo>{
         return listOf(
-            Biomas( BiomasDisponibles.LLANURA, description = "Una Llanura qualquiera", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.llanura),
-            Biomas( BiomasDisponibles.BOSQUE, description = "Un Bosque qualquiera", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.bosque),
-            Biomas( BiomasDisponibles.MONTAÑAS, description = "Unas Montañas qualquiera", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.monta_as),
-            Biomas( BiomasDisponibles.TAIGA, description = "Una Taiga hecho de cuadrados", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.taiga),
-            Biomas( BiomasDisponibles.DESIERTO, description = "Un Desierto hecho de cuadrados", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.8f, R.drawable.biomas),
-            Biomas( BiomasDisponibles.SABANA, description = "Una Sabana qualquiera", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.savanna),
-            Biomas( BiomasDisponibles.JUNGLA, description = "Una Jungla de mierda", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.8f, R.drawable.biomas)
+            BibliotecaInfo(
+                title = "ENCANTAMIENTOS",
+                imageRes = R.drawable.enchanted,
+                route = "encantamientos"
+            ),
+            BibliotecaInfo(
+                title = "MOBS",
+                imageRes = R.drawable.chicken,
+                route = "mobs"
+            ),
+            BibliotecaInfo(
+                title = "CRAFTEOS",
+                imageRes = R.drawable.mesa_crafteo,
+                route = "crafteos"
+            )
         )
     }
 }

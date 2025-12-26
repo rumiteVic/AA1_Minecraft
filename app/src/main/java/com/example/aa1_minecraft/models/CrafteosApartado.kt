@@ -45,7 +45,7 @@ import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit) {
+fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit, onThemeToggle: () -> Unit) {
     val listaCrafteos = DataLoaders().loadCrafteosInfo()
     val crafteosFinal = listaCrafteos.filter { it.versionImplementada <= versionActual }
     var crafteoSeleccionado by remember {
@@ -53,6 +53,9 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
             crafteosFinal.find { it.name == "Mesa de crafteo" }
         )
     }
+    var query by remember { mutableStateOf("") }
+    val listaFiltrada = crafteosFinal.filter { it.name.contains(query, ignoreCase = true) }
+
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
@@ -64,7 +67,7 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
             .padding(innerPadding)
             .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally){
-            TopTopBar(modifier = Modifier.height(16.dp),4)
+            TopTopBar(modifier = Modifier.height(16.dp),4, onThemeToggle = onThemeToggle)
             Spacer(modifier = Modifier.height(16.dp))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))
@@ -86,7 +89,15 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
             }
             Spacer(modifier = Modifier.height(16.dp))
             var text by remember { mutableStateOf("Buscar recetas") }
-            TextField(value = text, onValueChange = {text = it}, modifier = Modifier.fillMaxWidth())
+            TextField(
+                value = query,
+                onValueChange = { texto ->
+                    query = texto
+                    crafteoSeleccionado = listaFiltrada.firstOrNull()
+                },
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = { Text("Buscar recetas") }
+            )
         }
     }
 }

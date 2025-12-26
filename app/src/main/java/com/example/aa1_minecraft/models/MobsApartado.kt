@@ -1,5 +1,16 @@
 package com.example.aa1_minecraft.models
 
+import android.media.MediaPlayer
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -31,19 +42,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-//import androidx.navigation.NavController
 import com.example.aa1_minecraft.clases.DataLoaders
 import com.example.aa1_minecraft.clases.Mobs
+import androidx.compose.animation.with
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.platform.LocalContext
+import com.example.aa1_minecraft.R
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
-fun MobsEscena(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit) {
+fun MobsEscena(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit, onThemeToggle: () -> Unit) {
     val listaMobs = DataLoaders().loadMobsInfo()
     var mobSelecciodo by remember { mutableStateOf<Mobs?>(null) }
     val mobsFinal = listaMobs.filter { it.versionImplementada <= versionActual }
@@ -57,63 +71,47 @@ fun MobsEscena(modifier: Modifier = Modifier, navController: NavController, vers
             .fillMaxSize()
             .padding(innerPadding)
             .padding(16.dp)){
-            TopTopBar(modifier = Modifier.height(16.dp),2)
+            TopTopBar(modifier = Modifier.height(16.dp),2, onThemeToggle = onThemeToggle)
             Spacer(modifier = Modifier.height(16.dp))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))
-            if (mobSelecciodo != null) {
-                MobConcreto(mob = mobSelecciodo!!)
-            } else {
-                LazyColumn(verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)) {
-                    for (i in 0..(mobsFinal.size - 1) step 2) {
-                        item {
-                            Row(modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-                                Button(onClick = { mobSelecciodo = mobsFinal[i] }, modifier = Modifier
-                                    .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
-                                    .size(width = 150.dp, height = 150.dp),
-                                    contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
-                                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                                    shape = RoundedCornerShape(0.dp)) {
-                                    Box(modifier = Modifier.fillMaxSize()) {
-                                        Image(painter = painterResource(id = mobsFinal[i].imageResourceID),
-                                            contentDescription = null,
-                                            modifier = Modifier.fillMaxSize())
-                                        Box(modifier = Modifier
-                                            .fillMaxWidth()
-                                            .align(Alignment.BottomCenter)
-                                            .padding(bottom = 5.dp)){
-                                            Text(
-                                                text = mobsFinal[i].name,
-                                                modifier = Modifier
-                                                    .fillMaxWidth()
-                                                    .background(MaterialTheme.colorScheme.onSecondaryContainer),
-                                                textAlign = TextAlign.Center,
-                                                color = MaterialTheme.colorScheme.onPrimaryContainer
-                                            )
-                                        }
-                                    }
-                                }
-                                if(i+ 1 < mobsFinal.size){
-                                    Button(onClick = { mobSelecciodo = mobsFinal[i + 1] }, modifier = Modifier
+            AnimatedContent(
+                targetState = mobSelecciodo,
+                transitionSpec = {
+                    slideInHorizontally { fullWidth -> fullWidth } + fadeIn() with
+                            slideOutHorizontally { fullWidth -> -fullWidth } + fadeOut()
+                }
+            ){ mob ->
+                if (mob != null) {
+                    MobConcreto(mob = mob)
+                }
+                else {
+                    LazyColumn(verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)) {
+                        for (i in 0..(mobsFinal.size - 1) step 2) {
+                            item {
+                                Row(modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+                                    Button(onClick = { mobSelecciodo = mobsFinal[i] }, modifier = Modifier
                                         .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
                                         .size(width = 150.dp, height = 150.dp),
                                         contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
                                         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
                                         shape = RoundedCornerShape(0.dp)) {
                                         Box(modifier = Modifier.fillMaxSize()) {
-                                            Image(painter = painterResource(id = mobsFinal[i + 1].imageResourceID), contentDescription = null, modifier = Modifier.fillMaxSize())
+                                            Image(painter = painterResource(id = mobsFinal[i].imageResourceID),
+                                                contentDescription = null,
+                                                modifier = Modifier.fillMaxSize())
                                             Box(modifier = Modifier
                                                 .fillMaxWidth()
                                                 .align(Alignment.BottomCenter)
                                                 .padding(bottom = 5.dp)){
                                                 Text(
-                                                    text = mobsFinal[i + 1].name,
+                                                    text = mobsFinal[i].name,
                                                     modifier = Modifier
                                                         .fillMaxWidth()
                                                         .background(MaterialTheme.colorScheme.onSecondaryContainer),
@@ -123,31 +121,75 @@ fun MobsEscena(modifier: Modifier = Modifier, navController: NavController, vers
                                             }
                                         }
                                     }
+                                    if(i+ 1 < mobsFinal.size){
+                                        Button(onClick = { mobSelecciodo = mobsFinal[i + 1] }, modifier = Modifier
+                                            .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
+                                            .size(width = 150.dp, height = 150.dp),
+                                            contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                                            shape = RoundedCornerShape(0.dp)) {
+                                            Box(modifier = Modifier.fillMaxSize()) {
+                                                Image(painter = painterResource(id = mobsFinal[i + 1].imageResourceID), contentDescription = null, modifier = Modifier.fillMaxSize())
+                                                Box(modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .align(Alignment.BottomCenter)
+                                                    .padding(bottom = 5.dp)){
+                                                    Text(
+                                                        text = mobsFinal[i + 1].name,
+                                                        modifier = Modifier
+                                                            .fillMaxWidth()
+                                                            .background(MaterialTheme.colorScheme.onSecondaryContainer),
+                                                        textAlign = TextAlign.Center,
+                                                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
+                                Spacer(modifier = Modifier.height(16.dp))
+
                             }
-                            Spacer(modifier = Modifier.height(16.dp))
 
                         }
-
                     }
                 }
             }
+
         }
     }
 }
 
 @Composable
 fun MobConcreto(mob: Mobs, modifier: Modifier = Modifier){
+    val context = LocalContext.current
+    val audio: MediaPlayer = MediaPlayer.create(context, mob.audioResourceID)
+
+    var isPressed by remember { mutableStateOf(false) }
+
+    val animation by animateFloatAsState(
+        targetValue = if (isPressed) 1.1f else 1f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
+
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(16.dp)) {
         Spacer(modifier = Modifier.height(16.dp))
         Row(modifier = Modifier.padding(16.dp)) {
-            Image(
-                painter = painterResource(id = mob.imageResourceID),
-                contentDescription = null,
-                modifier = Modifier.size(150.dp)
-            )
+            IconButton (
+                onClick = {
+                    isPressed = !isPressed
+                    audio.start()}, modifier = Modifier.size(90.dp)){
+                Image(
+                    painter = painterResource(id = mob.imageResourceID),
+                    contentDescription = null,
+                    modifier = Modifier.size(150.dp).scale(animation)
+                )
+            }
             Spacer(modifier = Modifier.width(16.dp))
             Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(modifier = Modifier.height(5.dp))

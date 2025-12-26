@@ -16,5 +16,6 @@ class Mobs(
     val itemDrop: String,
     val pacific: MobPacifico,
     val versionImplementada: Float,
+    val audioResourceID: Int,
     val imageResourceID: Int
 )

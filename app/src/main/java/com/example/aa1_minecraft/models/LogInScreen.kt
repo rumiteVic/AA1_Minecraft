@@ -36,12 +36,13 @@ import com.example.aa1_minecraft.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit) {
+fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit, onThemeToggle: () -> Unit) {
     var showEncantamiento by remember { mutableStateOf(false) }
 
     if (showEncantamiento) {
         EncantamientoEscena(
-            modifier, navController, versionActual = versionActual, onVersionChange = onVersionChange)
+            modifier, navController, versionActual = versionActual, onVersionChange = onVersionChange, onThemeToggle = onThemeToggle
+        )
     } else {
         Scaffold(
             containerColor = MaterialTheme.colorScheme.background
@@ -57,7 +58,8 @@ fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, ver
 @Composable
 fun LoginContent(
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavController,
+
 ) {
     Column(
         modifier = modifier
