@@ -5,6 +5,7 @@ import com.example.aa1_minecraft.classes.BibliotecaInfo
 import com.example.aa1_minecraft.classes.Biomas
 import com.example.aa1_minecraft.classes.BiomasDisponibles
 import com.example.aa1_minecraft.classes.Crafteos
+import com.example.aa1_minecraft.classes.SkinsInfo
 import com.example.aa1_minecraft.classes.TipoBioma
 
 class DataLoaders (){
@@ -50,6 +51,43 @@ class DataLoaders (){
             Biomas( BiomasDisponibles.DESIERTO, description = "Un Desierto hecho de cuadrados", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.8f, R.drawable.desert),
             Biomas( BiomasDisponibles.SABANA, description = "Una Sabana cualquiera", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.savanna),
             Biomas( BiomasDisponibles.JUNGLA, description = "Una Jungla de mierda", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.8f, R.drawable.jungle)
+        )
+    }
+
+    fun loadSkinsInfo() : List<SkinsInfo>{
+        return listOf(
+            SkinsInfo(
+                name = "Steve",
+                imageRes = R.drawable.steve
+            ),
+            SkinsInfo(
+                name = "Alex",
+                imageRes = R.drawable.alex
+            ),
+            SkinsInfo(
+                name = "Juxray",
+                imageRes = R.drawable.yo
+            ),
+            SkinsInfo(
+                name = "Morita",
+                imageRes = R.drawable.ella
+            ),
+            SkinsInfo(
+                name = "Finn",
+                imageRes = R.drawable.su_padre
+            ),
+            SkinsInfo(
+                name = "Jake",
+                imageRes = R.drawable.la_mascota
+            ),
+            SkinsInfo(
+                name = "Notch",
+                imageRes = R.drawable.su_madre
+            ),
+            SkinsInfo(
+                name = "Victoria",
+                imageRes = R.drawable.su_prometido
+            )
         )
     }
     fun loadBibliotecaInfo() : List<BibliotecaInfo>{
