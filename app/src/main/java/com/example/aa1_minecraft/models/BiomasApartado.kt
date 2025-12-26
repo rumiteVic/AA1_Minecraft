@@ -1,5 +1,15 @@
 package com.example.aa1_minecraft.models
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.with
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -42,7 +52,7 @@ import com.example.aa1_minecraft.clases.Mobs
 import com.example.aa1_minecraft.classes.Biomas
 import com.example.aa1_minecraft.classes.BiomasDisponibles
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun BiomasEscena(
     modifier: Modifier = Modifier,
@@ -72,35 +82,42 @@ fun BiomasEscena(
 
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
             Spacer(modifier = Modifier.height(16.dp))
+            AnimatedContent(
+                targetState = biomaSeleccionado,
+                transitionSpec = {
+                    slideInHorizontally { fullWidth -> fullWidth } + fadeIn() with
+                            slideOutHorizontally { fullWidth -> -fullWidth } + fadeOut()
+                }
+            ) { bioma ->
+                if (biomaSeleccionado != null) {
+                    BiomaConcreto(bioma = biomaSeleccionado!!)
+                } else {
+                    LazyColumn(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.fillMaxWidth().padding(8.dp)
+                    ) {
 
-            if (biomaSeleccionado != null) {
-                BiomaConcreto(bioma = biomaSeleccionado!!)
-            } else {
-                LazyColumn(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth().padding(8.dp)
-                ) {
+                        for (i in 0..(biomasFiltrados.size - 1) step 2) {
+                            item {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth()
+                                        .padding(horizontal = 8.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
 
-                    for (i in 0..(biomasFiltrados.size - 1) step 2) {
-                        item {
-                            Row(
-                                modifier = Modifier.fillMaxWidth()
-                                    .padding(horizontal = 8.dp),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
+                                    BiomaBoton(biomasFiltrados[i]) {
+                                        biomaSeleccionado = biomasFiltrados[i]
+                                    }
 
-                                BiomaBoton(biomasFiltrados[i]) {
-                                    biomaSeleccionado = biomasFiltrados[i]
-                                }
-
-                                if (i + 1 < biomasFiltrados.size) {
-                                    BiomaBoton(biomasFiltrados[i + 1]) {
-                                        biomaSeleccionado = biomasFiltrados[i + 1]
+                                    if (i + 1 < biomasFiltrados.size) {
+                                        BiomaBoton(biomasFiltrados[i + 1]) {
+                                            biomaSeleccionado = biomasFiltrados[i + 1]
+                                        }
                                     }
                                 }
+                                Spacer(modifier = Modifier.height(16.dp))
                             }
-                            Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
                 }
@@ -148,6 +165,16 @@ fun BiomaBoton(bioma: Biomas, onClick: () -> Unit) {
 
 @Composable
 fun BiomaConcreto(bioma: Biomas, modifier: Modifier = Modifier) {
+    var isPressed by remember { mutableStateOf(false) }
+
+    val animation by animateFloatAsState(
+        targetValue = if (isPressed) 1.1f else 1f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -167,7 +194,7 @@ fun BiomaConcreto(bioma: Biomas, modifier: Modifier = Modifier) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start
             ) {
-                Text(text = bioma.name.nombre)
+                Text(text = bioma.name.nombre, textAlign = TextAlign.Center, fontSize = 22.sp)
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = bioma.description)
             }
@@ -186,21 +213,42 @@ fun BiomaConcreto(bioma: Biomas, modifier: Modifier = Modifier) {
 fun InfoRow(title: String, value: String) {
     Row(
         modifier = Modifier
+            .height(96.dp)
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.secondary)
-            .padding(8.dp)
+            , horizontalArrangement = Arrangement.Center
     ) {
-        Box(
-            modifier = Modifier.weight(1f),
+        Box(modifier = Modifier
+            .weight(1f)
+            .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
+            .padding(2.dp)
+            .border(
+                BorderStroke(
+                    4.dp,
+                    MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                )
+            )
+            .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             Text(title, color = MaterialTheme.colorScheme.onSecondary)
         }
-        Box(
-            modifier = Modifier.weight(1f),
+        Box(modifier = Modifier
+            .weight(1f)
+            .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
+            .padding(2.dp)
+            .border(
+                BorderStroke(
+                    4.dp,
+                    MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
+                )
+            )
+            .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text(value, color = MaterialTheme.colorScheme.onSecondary)
+            Text(value, color = MaterialTheme.colorScheme.onSecondary, textAlign = TextAlign.Center)
         }
     }
 }
+
+

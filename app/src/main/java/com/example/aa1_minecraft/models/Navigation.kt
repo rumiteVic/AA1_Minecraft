@@ -78,6 +78,16 @@ fun NavigationWrapper(modifier: Modifier = Modifier, onThemeToggle: () -> Unit) 
                 onVersionChange = { version = it },
                 onThemeToggle = onThemeToggle)
         }
+        composable(route = "mapa"){
+            MapaEscena(
+                modifier,
+                navController,
+                versionActual = version,
+                onVersionChange = { version = it },
+                onThemeToggle = onThemeToggle
+            )
+
+        }
 
     }
 }

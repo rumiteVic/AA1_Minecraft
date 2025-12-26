@@ -74,7 +74,7 @@ fun HomeEscena(modifier: Modifier = Modifier, navController: NavController, onTh
                     .padding(8.dp)
             ) {
                 item{
-                    Text(text = user)
+                    Text(text = user, fontSize = 50.sp)
 
                     SkinConcreta(skinSeleccionada)
                     Button(
@@ -135,7 +135,7 @@ fun SkinConcreta(skin: SkinsInfo?, modifier: Modifier = Modifier){
             Image(
                 painter = painterResource(id = skin!!.imageRes),
                 contentDescription = null,
-                modifier = Modifier.size(150.dp).padding(4.dp).align(Alignment.Center)
+                modifier = Modifier.size(300.dp).padding(4.dp).align(Alignment.Center)
             )
         }
 

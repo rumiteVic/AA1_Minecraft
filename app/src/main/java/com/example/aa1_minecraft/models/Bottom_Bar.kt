@@ -73,7 +73,7 @@ fun BottomBar(modifier: Modifier = Modifier, navController: NavController){
                 alignment = Alignment.Center
             )
         }
-        Button(onClick = { navController.navigate("general") },
+        Button(onClick = { navController.navigate("mapa") },
             modifier = Modifier
                 .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                 .padding(2.dp)
