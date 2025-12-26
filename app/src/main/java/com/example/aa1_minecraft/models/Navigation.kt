@@ -15,6 +15,9 @@ import androidx.navigation.compose.rememberNavController
 fun NavigationWrapper(modifier: Modifier = Modifier, onThemeToggle: () -> Unit) {
     var version by remember { mutableStateOf(1.7f) }
     val navController = rememberNavController()
+
+    var name by remember { mutableStateOf("Username") }
+
     NavHost(navController = navController, startDestination = "login") {
         composable(route = "login") {
             LoginScreen(
@@ -22,7 +25,9 @@ fun NavigationWrapper(modifier: Modifier = Modifier, onThemeToggle: () -> Unit) 
                 navController,
                 versionActual = version,
                 onVersionChange = { version = it },
-                onThemeToggle = onThemeToggle
+                onThemeToggle = onThemeToggle,
+                name = name,
+                onNameChange = { name = it }
             )
         }
         composable(route = "encantamientos") {
@@ -56,6 +61,14 @@ fun NavigationWrapper(modifier: Modifier = Modifier, onThemeToggle: () -> Unit) 
                 versionActual = version,
                 onVersionChange = { version = it },
                 onThemeToggle = onThemeToggle)
+        }
+        composable(route = "home"){
+            HomeEscena(
+                modifier,
+                navController,
+                onThemeToggle = onThemeToggle,
+                Username = name
+            )
         }
         composable(route = "crafteos") {
             CrafteosApartado(

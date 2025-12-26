@@ -36,9 +36,8 @@ import com.example.aa1_minecraft.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit, onThemeToggle: () -> Unit) {
+fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, versionActual: Float, onVersionChange: (Float) -> Unit, onThemeToggle: () -> Unit, name: String, onNameChange: (String) -> Unit) {
     var showEncantamiento by remember { mutableStateOf(false) }
-
     if (showEncantamiento) {
         EncantamientoEscena(
             modifier, navController, versionActual = versionActual, onVersionChange = onVersionChange, onThemeToggle = onThemeToggle
@@ -48,7 +47,7 @@ fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, ver
             containerColor = MaterialTheme.colorScheme.background
         ) { innerPadding ->
             LoginContent(
-                modifier = Modifier.padding(innerPadding), navController
+                modifier = Modifier.padding(innerPadding), navController, name,onNameChange = onNameChange
             )
         }
     }
@@ -59,7 +58,8 @@ fun LoginScreen(modifier: Modifier = Modifier, navController: NavController, ver
 fun LoginContent(
     modifier: Modifier = Modifier,
     navController: NavController,
-
+    name: String,
+    onNameChange: (String) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -83,10 +83,10 @@ fun LoginContent(
 
         Spacer(modifier = Modifier.height(100.dp))
 
-        var text by remember { mutableStateOf("Username") }
+//        var text by remember { mutableStateOf("Username") }
         TextField(
-            value = text,
-            onValueChange = { text = it },
+            value = name,
+            onValueChange = { onNameChange(it) },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = MaterialTheme.colorScheme.onSurface,
@@ -117,7 +117,7 @@ fun LoginContent(
 
         Button(
             onClick = {
-                navController.navigate("general")
+                navController.navigate("home")
             },
             modifier = Modifier
                 .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
@@ -131,7 +131,7 @@ fun LoginContent(
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = {navController.navigate("general") },
+            onClick = {navController.navigate("home") },
             modifier = Modifier
                 .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
                 .size(width = 150.dp, height = 50.dp),

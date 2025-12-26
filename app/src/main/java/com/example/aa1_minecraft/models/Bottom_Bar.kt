@@ -39,7 +39,7 @@ fun BottomBar(modifier: Modifier = Modifier, navController: NavController){
         .background(MaterialTheme.colorScheme.secondary),
         horizontalArrangement = Arrangement.SpaceEvenly,
         ){
-        Button(onClick = { navController.navigate("general") },
+        Button(onClick = { navController.navigate("home") },
             modifier = Modifier
                 .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                 .padding(2.dp)
