@@ -46,7 +46,8 @@ fun NavigationWrapper(modifier: Modifier = Modifier, onThemeToggle: () -> Unit) 
                 modifier,
                 navController,
                 versionActual = version,
-                onVersionChange = { version = it })
+                onVersionChange = { version = it },
+                onThemeToggle = onThemeToggle)
         }
         composable(route = "general") {
             GeneralEscena(

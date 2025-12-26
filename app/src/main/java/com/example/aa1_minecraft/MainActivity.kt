@@ -23,7 +23,7 @@ import com.example.compose.AA1_MinecraftTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var darkTheme by mutableStateOf(false)
+        var darkTheme by mutableStateOf(true)
         //enableEdgeToEdge()
         setContent {
             AA1_MinecraftTheme(darkTheme = darkTheme, dynamicColor = false) {

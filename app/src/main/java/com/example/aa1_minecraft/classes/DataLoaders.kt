@@ -2,7 +2,10 @@ package com.example.aa1_minecraft.clases
 
 import com.example.aa1_minecraft.R
 import com.example.aa1_minecraft.classes.BibliotecaInfo
+import com.example.aa1_minecraft.classes.Biomas
+import com.example.aa1_minecraft.classes.BiomasDisponibles
 import com.example.aa1_minecraft.classes.Crafteos
+import com.example.aa1_minecraft.classes.TipoBioma
 
 class DataLoaders (){
     fun loadEncantamientosInfo() : List<Encantamientos>{
@@ -24,8 +27,29 @@ class DataLoaders (){
     }
     fun loadCrafteosInfo() : List<Crafteos> {
         return listOf(
-            Crafteos("Mesa de crafteo", "Puede usarse cualquier placa de madera" ,1.7f,R.drawable.mesa_crafteo),
-            Crafteos("Madera", null, 1.7f,R.drawable.mesa_crafteo)
+            Crafteos("Mesa de crafteo", "Puede usarse cualquier placa de madera" ,1.7f,R.drawable.crafting_grid),
+            Crafteos("Plank", "Puede usarse cualquier Madera", 1.7f, R.drawable.crafting_grid_1),
+            Crafteos("Palo", "Es un Palo", 1.7f,  R.drawable.crafting_grid_2),
+            Crafteos("Pico de diamante", "Quiero ser minero", 1.8f,R.drawable.crafting_grid_3),
+            Crafteos("Espada de diamante", "Tu sable", 1.8f,R.drawable.crafting_grid_4),
+            Crafteos("Azada de diamante", "Una azada", 1.8f,R.drawable.crafting_grid_5),
+            Crafteos("Casco de diamante", "Un casco", 1.8f,R.drawable.crafting_grid_6),
+            Crafteos("Pechera de diamante", "A sacar pecho, machote", 1.8f,R.drawable.crafting_grid_7),
+            Crafteos("Mallas de diamante", "Cubrete mejor tus partes", 1.8f,R.drawable.crafting_grid_8),
+            Crafteos("Botas de diamante", "Esta pieza no cubre nada, matao", 1.8f,R.drawable.crafting_grid_10)
+
+        )
+    }
+
+    fun loadBiomasInfo() : List<Biomas>{
+        return listOf(
+            Biomas( BiomasDisponibles.LLANURA, description = "Una Llanura cualquiera", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.llanura),
+            Biomas( BiomasDisponibles.BOSQUE, description = "Un Bosque cualquiera", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.bosque),
+            Biomas( BiomasDisponibles.MONTAÑAS, description = "Unas Montañas cualquiera", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.monta_as),
+            Biomas( BiomasDisponibles.TAIGA, description = "Una Taiga hecho de cuadrados", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.taiga),
+            Biomas( BiomasDisponibles.DESIERTO, description = "Un Desierto hecho de cuadrados", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.8f, R.drawable.desert),
+            Biomas( BiomasDisponibles.SABANA, description = "Una Sabana cualquiera", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.7f, R.drawable.savanna),
+            Biomas( BiomasDisponibles.JUNGLA, description = "Una Jungla de mierda", TipoBioma.BIOMAS_EXUBERANTES, versionImplementada= 1.8f, R.drawable.jungle)
         )
     }
     fun loadBibliotecaInfo() : List<BibliotecaInfo>{
@@ -44,6 +68,11 @@ class DataLoaders (){
                 title = "CRAFTEOS",
                 imageRes = R.drawable.mesa_crafteo,
                 route = "crafteos"
+            ),
+            BibliotecaInfo(
+                title = "BIOMAS",
+                imageRes = R.drawable.biomas,
+                route = "biomas"
             )
         )
     }

@@ -48,7 +48,7 @@ fun BottomBar(modifier: Modifier = Modifier, navController: NavController){
             contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
             shape = RoundedCornerShape(0.dp)) {
-            Image(painter = painterResource(id = R.drawable.plains_grass_block),
+            Image(painter = painterResource(id = R.drawable.image),
                 contentDescription = null,
                 modifier = Modifier
                 .size(width = 75.dp, height = 75.dp),
@@ -66,7 +66,7 @@ fun BottomBar(modifier: Modifier = Modifier, navController: NavController){
             contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
             shape = RoundedCornerShape(0.dp)) {
-            Image(painter = painterResource(id = R.drawable.plains_grass_block),
+            Image(painter = painterResource(id = R.drawable.image2),
                 contentDescription = null,
                 modifier = Modifier
                     .size(width = 75.dp, height = 75.dp),
@@ -82,14 +82,14 @@ fun BottomBar(modifier: Modifier = Modifier, navController: NavController){
             contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
             shape = RoundedCornerShape(0.dp)) {
-            Image(painter = painterResource(id = R.drawable.plains_grass_block),
+            Image(painter = painterResource(id = R.drawable.image3),
                 contentDescription = null,
                 modifier = Modifier
                     .size(width = 75.dp, height = 75.dp),
                 alignment = Alignment.Center
             )
         }
-        Button(onClick = { navController.navigate("general") },
+        Button(onClick = { navController.navigate("crafteos") },
             modifier = Modifier
                 .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
                 .padding(2.dp)
@@ -98,7 +98,7 @@ fun BottomBar(modifier: Modifier = Modifier, navController: NavController){
             contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
             shape = RoundedCornerShape(0.dp)) {
-            Image(painter = painterResource(id = R.drawable.plains_grass_block),
+            Image(painter = painterResource(id = R.drawable.mesa_crafteo),
                 contentDescription = null,
                 modifier = Modifier
                     .size(width = 75.dp, height = 75.dp),

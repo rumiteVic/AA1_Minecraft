@@ -48,7 +48,8 @@ fun BiomasEscena(
     modifier: Modifier = Modifier,
     navController: NavController,
     versionActual: Float,
-    onVersionChange: (Float) -> Unit
+    onVersionChange: (Float) -> Unit,
+    onThemeToggle: () -> Unit
 ) {
     val listaBiomas = DataLoaders().loadBiomasInfo()
     var biomaSeleccionado by remember { mutableStateOf<Biomas?>(null) }
@@ -66,7 +67,7 @@ fun BiomasEscena(
                 .padding(16.dp)
         ) {
 
-            TopTopBar(modifier = Modifier.height(16.dp), 1)
+            TopTopBar(modifier = Modifier.height(16.dp), 1, onThemeToggle = onThemeToggle)
             Spacer(modifier = Modifier.height(16.dp))
 
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
