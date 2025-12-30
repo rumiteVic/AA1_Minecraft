@@ -16,7 +16,7 @@ fun NavigationWrapper(modifier: Modifier = Modifier, onThemeToggle: () -> Unit) 
     var version by remember { mutableStateOf(1.7f) }
     val navController = rememberNavController()
 
-    var name by remember { mutableStateOf("Username") }
+    var name by remember { mutableStateOf("") }
 
     NavHost(navController = navController, startDestination = "login") {
         composable(route = "login") {

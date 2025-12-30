@@ -4,9 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -27,7 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -64,7 +62,7 @@ fun LoginContent(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(dimensionResource(id = R.dimen.dimendp16)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -73,7 +71,7 @@ fun LoginContent(
             fontWeight = FontWeight.Bold
         )
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp40)))
 
         Image(
             painter = painterResource(R.drawable.plains_grass_block),
@@ -81,12 +79,13 @@ fun LoginContent(
             modifier = Modifier
         )
 
-        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp100)))
 
 //        var text by remember { mutableStateOf("Username") }
         TextField(
             value = name,
             onValueChange = { onNameChange(it) },
+            placeholder = { Text("Username") },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = MaterialTheme.colorScheme.onSurface,
@@ -97,12 +96,13 @@ fun LoginContent(
             )
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp8)))
 
-        var secondText by remember { mutableStateOf("Password") }
+        var secondText by remember { mutableStateOf("") }
         TextField(
             value = secondText,
             onValueChange = { secondText = it },
+            placeholder = { Text("Password") },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = MaterialTheme.colorScheme.onSurface,
@@ -113,29 +113,32 @@ fun LoginContent(
             )
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
 
         Button(
             onClick = {
                 navController.navigate("home")
+                if (name.isEmpty()){
+                    onNameChange("Steve")
+                }
             },
             modifier = Modifier
-                .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
-                .size(width = 150.dp, height = 50.dp),
-            shape = RoundedCornerShape(0.dp),
+                .border(BorderStroke(dimensionResource(id = R.dimen.dimendp4), MaterialTheme.colorScheme.outline))
+                .size(width = dimensionResource(id = R.dimen.dimendp150), height = dimensionResource(id = R.dimen.dimendp50)),
+            shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada)),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer
             )
         ) {
             Text("Login")
         }
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
         Button(
             onClick = {navController.navigate("home") },
             modifier = Modifier
-                .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
-                .size(width = 150.dp, height = 50.dp),
-            shape = RoundedCornerShape(0.dp),
+                .border(BorderStroke(dimensionResource(id = R.dimen.dimendp4), MaterialTheme.colorScheme.outline))
+                .size(width = dimensionResource(id = R.dimen.dimendp150), height = dimensionResource(id = R.dimen.dimendp50)),
+            shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada)),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer
             )

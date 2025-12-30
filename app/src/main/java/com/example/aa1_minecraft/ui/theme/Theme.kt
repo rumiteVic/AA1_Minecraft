@@ -32,9 +32,13 @@ val MinecraftTenFontFamily = FontFamily(
 )
 
 val AppTypography = Typography(
-    bodyLarge = TextStyle(
+    bodySmall = TextStyle(
         fontFamily = MinecraftFontFamily,
         fontSize = 16.sp
+    ),
+    bodyLarge = TextStyle(
+        fontFamily = MinecraftFontFamily,
+        fontSize = 20.sp
     ),
     bodyMedium = TextStyle(
         fontFamily = MinecraftFontFamily,

@@ -43,12 +43,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.aa1_minecraft.R
 import com.example.aa1_minecraft.clases.DataLoaders
 import com.example.aa1_minecraft.clases.Encantamientos
 
@@ -70,12 +72,12 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(16.dp)
+                .padding(dimensionResource(id = R.dimen.dimendp16))
         ) {
-            TopTopBar(modifier = Modifier.height(16.dp), 1, onThemeToggle = onThemeToggle)
-            Spacer(modifier = Modifier.height(16.dp))
+            TopTopBar(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)), 1, onThemeToggle = onThemeToggle)
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
             AnimatedContent(
                 targetState = encantamientoSelecciodo,
                 transitionSpec = {
@@ -91,14 +93,14 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(8.dp)
+                            .padding(dimensionResource(id = R.dimen.dimendp8))
                     ) {
                         for (i in 0..(encantamientosFinal.size - 1) step 2) {
                             item {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(horizontal = 8.dp),
+                                        .padding(horizontal = dimensionResource(id = R.dimen.dimendp8)),
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
                                     Button(
@@ -106,14 +108,14 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                         modifier = Modifier
                                             .border(
                                                 BorderStroke(
-                                                    4.dp,
+                                                    dimensionResource(id = R.dimen.dimendp4),
                                                     MaterialTheme.colorScheme.outline
                                                 )
                                             )
-                                            .size(width = 150.dp, height = 150.dp),
-                                        contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                                            .size(width = dimensionResource(id = R.dimen.dimendp150), height = dimensionResource(id = R.dimen.dimendp150)),
+                                        contentPadding = PaddingValues(top = dimensionResource(id = R.dimen.dimendp3), bottom = dimensionResource(id = R.dimen.dimendp3)),
                                         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                                        shape = RoundedCornerShape(0.dp)
+                                        shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada))
                                     ) {
                                         Box(modifier = Modifier.fillMaxSize()) {
                                             Image(
@@ -125,13 +127,13 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                                 modifier = Modifier
                                                     .fillMaxWidth()
                                                     .align(Alignment.BottomCenter)
-                                                    .padding(bottom = 5.dp)
+                                                    .padding(bottom = dimensionResource(id = R.dimen.dimendp5))
                                             ) {
                                                 Text(
                                                     text = encantamientosFinal[i].encantamiento.nombre,
                                                     modifier = Modifier
                                                         .fillMaxWidth()
-                                                        .padding(4.dp)
+                                                        .padding(dimensionResource(id = R.dimen.dimendp4))
                                                         .background(MaterialTheme.colorScheme.onSecondaryContainer),
                                                     textAlign = TextAlign.Center,
                                                     color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -145,14 +147,14 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                             modifier = Modifier
                                                 .border(
                                                     BorderStroke(
-                                                        4.dp,
+                                                        dimensionResource(id = R.dimen.dimendp4),
                                                         MaterialTheme.colorScheme.outline
                                                     )
                                                 )
-                                                .size(width = 150.dp, height = 150.dp),
-                                            contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                                                .size(width = dimensionResource(id = R.dimen.dimendp150), height = dimensionResource(id = R.dimen.dimendp150)),
+                                            contentPadding = PaddingValues(top = dimensionResource(id = R.dimen.dimendp3), bottom = dimensionResource(id = R.dimen.dimendp3)),
                                             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                                            shape = RoundedCornerShape(0.dp)
+                                            shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada))
                                         ) {
                                             Box(modifier = Modifier.fillMaxSize()) {
                                                 Image(
@@ -164,13 +166,13 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                                     modifier = Modifier
                                                         .fillMaxWidth()
                                                         .align(Alignment.BottomCenter)
-                                                        .padding(bottom = 5.dp)
+                                                        .padding(bottom = dimensionResource(id = R.dimen.dimendp5))
                                                 ) {
                                                     Text(
                                                         text = encantamientosFinal[i + 1].encantamiento.nombre,
                                                         modifier = Modifier
                                                             .fillMaxWidth()
-                                                            .padding(4.dp)
+                                                            .padding(dimensionResource(id = R.dimen.dimendp4))
                                                             .background(MaterialTheme.colorScheme.onSecondaryContainer),
                                                         textAlign = TextAlign.Center,
                                                         color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -180,7 +182,7 @@ fun EncantamientoEscena(modifier: Modifier = Modifier, navController: NavControl
                                         }
                                     }
                                 }
-                                Spacer(modifier = Modifier.height(16.dp))
+                                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
                             }
                         }
                     }
@@ -204,28 +206,28 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
     )
     Column(modifier = Modifier
         .fillMaxWidth()
-        .padding(16.dp)) {
+        .padding(dimensionResource(id = R.dimen.dimendp16))) {
 
-        Row(modifier = Modifier.padding(16.dp)) {
+        Row(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimendp16))) {
             IconButton (
                 onClick = {
                     isPressed = !isPressed}, modifier = Modifier.size(90.dp)){
                 Image(
                     painter = painterResource(id = encantamiento.imageResourceID),
                     contentDescription = null,
-                    modifier = Modifier.size(150.dp).scale(animation)
+                    modifier = Modifier.size(dimensionResource(id = R.dimen.dimendp150)).scale(animation)
                 )
             }
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.dimendp16)))
             Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                Spacer(modifier = Modifier.height(5.dp))
-                Text(text = encantamiento.encantamiento.nombre, textAlign = TextAlign.Center, fontSize = 22.sp)
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp5)))
+                Text(text = encantamiento.encantamiento.nombre, textAlign = TextAlign.Center, style = MaterialTheme.typography.titleLarge)
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp10)))
                 Text(text = encantamiento.efecto, textAlign = TextAlign.Center)
             }
         }
         Column(modifier = Modifier
-            .padding(6.dp)
+            .padding(dimensionResource(id = R.dimen.dimendp5))
             .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center){
             Row (modifier = Modifier
@@ -234,11 +236,11 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                 .weight(1f), horizontalArrangement = Arrangement.Center){
                 Box(modifier = Modifier
                     .weight(1f)
-                    .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                    .padding(2.dp)
+                    .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                    .padding(dimensionResource(id = R.dimen.dimendp2))
                     .border(
                         BorderStroke(
-                            4.dp,
+                            dimensionResource(id = R.dimen.dimendp4),
                             MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                         )
                     )
@@ -246,20 +248,20 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     contentAlignment = Alignment.Center) {
                     Text(
                         text = "Nivel máximo",
-                        fontSize = 20.sp,
+                        style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSecondary,
                         modifier = Modifier
-                            .padding(10.dp)
+                            .padding(dimensionResource(id = R.dimen.dimendp10))
                     )
                 }
                 Box(modifier = Modifier
                     .weight(1f)
-                    .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                    .padding(2.dp)
+                    .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                    .padding(dimensionResource(id = R.dimen.dimendp2))
                     .border(
                         BorderStroke(
-                            4.dp,
+                            dimensionResource(id = R.dimen.dimendp4),
                             MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                         )
                     )
@@ -267,11 +269,11 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     contentAlignment = Alignment.Center){
                     Text(
                         text = encantamiento.nivelMaximo.toString(),
-                        fontSize = 20.sp,
+                        style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSecondary,
                         modifier = Modifier
-                            .padding(10.dp)
+                            .padding(dimensionResource(id = R.dimen.dimendp10))
                     )
                 }
             }
@@ -281,11 +283,11 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                 .weight(1f), horizontalArrangement = Arrangement.Center) {
                 Box(modifier = Modifier
                     .weight(1f)
-                    .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                    .padding(2.dp)
+                    .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                    .padding(dimensionResource(id = R.dimen.dimendp2))
                     .border(
                         BorderStroke(
-                            4.dp,
+                            dimensionResource(id = R.dimen.dimendp4),
                             MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                         )
                     )
@@ -293,20 +295,20 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     contentAlignment = Alignment.Center) {
                     Text(
                         text = "Peso encantamiento",
-                        fontSize = 20.sp,
+                        style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSecondary,
                         modifier = Modifier
-                            .padding(10.dp)
+                            .padding(dimensionResource(id = R.dimen.dimendp10))
                     )
                 }
                 Box(modifier = Modifier
                     .weight(1f)
-                    .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                    .padding(2.dp)
+                    .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                    .padding(dimensionResource(id = R.dimen.dimendp2))
                     .border(
                         BorderStroke(
-                            4.dp,
+                            dimensionResource(id = R.dimen.dimendp4),
                             MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                         )
                     )
@@ -314,11 +316,11 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     contentAlignment = Alignment.Center) {
                     Text(
                         text = encantamiento.pesoEncantamiento.toString(),
-                        fontSize = 20.sp,
+                        style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSecondary,
                         modifier = Modifier
-                            .padding(10.dp)
+                            .padding(dimensionResource(id = R.dimen.dimendp10))
                     )
                 }
             }
@@ -328,11 +330,11 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                 .weight(1f), horizontalArrangement = Arrangement.Center) {
                 Box(modifier = Modifier
                     .weight(1f)
-                    .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                    .padding(2.dp)
+                    .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                    .padding(dimensionResource(id = R.dimen.dimendp2))
                     .border(
                         BorderStroke(
-                            4.dp,
+                            dimensionResource(id = R.dimen.dimendp4),
                             MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                         )
                     )
@@ -340,7 +342,7 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     contentAlignment = Alignment.Center) {
                     Text(
                         text = "Se encuentra \nsolo en tesoros",
-                        fontSize = 15.sp,
+                        style = MaterialTheme.typography.bodySmall,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSecondary,
 
@@ -349,38 +351,38 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                 if (encantamiento.halladoEnTesoro) {
                     Box(modifier = Modifier
                         .weight(1f)
-                        .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                        .padding(2.dp)
+                        .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                        .padding(dimensionResource(id = R.dimen.dimendp2))
                         .border(
                             BorderStroke(
-                                4.dp,
+                                dimensionResource(id = R.dimen.dimendp4),
                                 MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                             )
                         )
                         .fillMaxSize(),
                         contentAlignment = Alignment.Center) {
-                        Text(text = "Sí", fontSize = 20.sp, textAlign = TextAlign.Center,
+                        Text(text = "Sí", style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onSecondary,
                             modifier = Modifier
-                                .padding(10.dp))
+                                .padding(dimensionResource(id = R.dimen.dimendp10)))
                     }
                 } else {
                     Box(modifier = Modifier
                         .weight(1f)
-                        .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                        .padding(2.dp)
+                        .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                        .padding(dimensionResource(id = R.dimen.dimendp2))
                         .border(
                             BorderStroke(
-                                4.dp,
+                                dimensionResource(id = R.dimen.dimendp4),
                                 MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                             )
                         )
                         .fillMaxSize(),
                         contentAlignment = Alignment.Center){
-                        Text(text = "No", fontSize = 20.sp, textAlign = TextAlign.Center,
+                        Text(text = "No", style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onSecondary,
                             modifier = Modifier
-                                .padding(10.dp))
+                                .padding(dimensionResource(id = R.dimen.dimendp10)))
                     }
                 }
             }
@@ -390,11 +392,11 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                 .weight(1f), horizontalArrangement = Arrangement.Center) {
                 Box(modifier = Modifier
                     .weight(1f)
-                    .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                    .padding(2.dp)
+                    .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                    .padding(dimensionResource(id = R.dimen.dimendp2))
                     .border(
                         BorderStroke(
-                            4.dp,
+                            dimensionResource(id = R.dimen.dimendp4),
                             MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                         )
                     )
@@ -402,20 +404,20 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     contentAlignment = Alignment.Center) {
                     Text(
                         text = "Disponible en los siguientes items",
-                        fontSize = 15.sp,
+                        style = MaterialTheme.typography.bodySmall,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSecondary,
                         modifier = Modifier
-                            .padding(10.dp)
+                            .padding(dimensionResource(id = R.dimen.dimendp10))
                     )
                 }
                 Box(modifier = Modifier
                     .weight(1f)
-                    .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                    .padding(2.dp)
+                    .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                    .padding(dimensionResource(id = R.dimen.dimendp2))
                     .border(
                         BorderStroke(
-                            4.dp,
+                            dimensionResource(id = R.dimen.dimendp4),
                             MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                         )
                     )
@@ -424,11 +426,11 @@ fun EncantamientoConcreto(encantamiento: Encantamientos, modifier: Modifier = Mo
                     LazyColumn {
                         item{
                             for (item in encantamiento.encantamiento.itemsCompatibles) {
-                                Text(text = item.nombre, fontSize = 20.sp, textAlign = TextAlign.Center,
+                                Text(text = item.nombre,style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center,
                                     color = MaterialTheme.colorScheme.onSecondary,
                                     modifier = Modifier
-                                        .padding(5.dp))
-                                Spacer(modifier = Modifier.height(2.dp))
+                                        .padding(dimensionResource(id = R.dimen.dimendp5)))
+                                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp2)))
                             }
                         }
 

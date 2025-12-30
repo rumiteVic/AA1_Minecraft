@@ -34,11 +34,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.aa1_minecraft.R
 import com.example.aa1_minecraft.clases.DataLoaders
 import com.example.aa1_minecraft.classes.Crafteos
 import kotlin.random.Random
@@ -65,30 +67,29 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
         Column(modifier = modifier
             .fillMaxSize()
             .padding(innerPadding)
-            .padding(16.dp),
+            .padding(dimensionResource(id = R.dimen.dimendp16)),
             horizontalAlignment = Alignment.CenterHorizontally){
-            TopTopBar(modifier = Modifier.height(16.dp),4, onThemeToggle = onThemeToggle)
-            Spacer(modifier = Modifier.height(16.dp))
+            TopTopBar(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)),4, onThemeToggle = onThemeToggle)
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
             CrafteoConcreto(crafteo = crafteoSeleccionado!!)
             Button(onClick = { val nuevoIndice = Random.nextInt(crafteosFinal.size)
                 crafteoSeleccionado = crafteosFinal[nuevoIndice]}, modifier = Modifier
                 .border(
                     BorderStroke(
-                        4.dp,
+                        dimensionResource(id = R.dimen.dimendp4),
                         MaterialTheme.colorScheme.outline
                     )
                 )
-                .size(width = 100.dp, height = 100.dp),
-                contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                .size(width = dimensionResource(id = R.dimen.dimendp100), height = dimensionResource(id = R.dimen.dimendp100)),
+                contentPadding = PaddingValues(top = dimensionResource(id = R.dimen.dimendp3), bottom = dimensionResource(id = R.dimen.dimendp3)),
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                shape = RoundedCornerShape(0.dp)
+                shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada))
             ){
-                Text(text = "Craft", fontSize = 20.sp)
+                Text(text = "Craft", style = MaterialTheme.typography.bodyLarge)
             }
-            Spacer(modifier = Modifier.height(16.dp))
-            var text by remember { mutableStateOf("Buscar recetas") }
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
             TextField(
                 value = query,
                 onValueChange = { texto ->
@@ -107,14 +108,14 @@ fun CrafteosApartado(modifier: Modifier = Modifier, navController: NavController
 fun CrafteoConcreto(crafteo: Crafteos, modifier: Modifier = Modifier){
     Column(modifier = Modifier
         .fillMaxWidth()
-        .padding(16.dp),
+        .padding(dimensionResource(id = R.dimen.dimendp16)),
     horizontalAlignment = Alignment.CenterHorizontally){
         Box(modifier = Modifier
 
-            .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
+            .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
             .border(
                 BorderStroke(
-                    4.dp,
+                    dimensionResource(id = R.dimen.dimendp4),
                     MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                 )
 
@@ -124,21 +125,21 @@ fun CrafteoConcreto(crafteo: Crafteos, modifier: Modifier = Modifier){
                     text = crafteo.name, modifier = Modifier
                         .fillMaxWidth()
                         .background(MaterialTheme.colorScheme.secondary)
-                        .padding(4.dp),
+                        .padding(dimensionResource(id = R.dimen.dimendp4)),
 
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.dimendp16)))
         Box(modifier = Modifier
             .align(Alignment.CenterHorizontally)
             .fillMaxWidth()
-            .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
+            .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
             .background(MaterialTheme.colorScheme.secondary)
             .border(
                 BorderStroke(
-                    4.dp,
+                    dimensionResource(id = R.dimen.dimendp4),
                     MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                 )
 
@@ -147,16 +148,16 @@ fun CrafteoConcreto(crafteo: Crafteos, modifier: Modifier = Modifier){
             Image(
                 painter = painterResource(id = crafteo.imageResourceID),
                 contentDescription = null,
-                modifier = Modifier.size(150.dp).padding(4.dp).align(Alignment.Center)
+                modifier = Modifier.size(dimensionResource(id = R.dimen.dimendp150)).padding(dimensionResource(id = R.dimen.dimendp4)).align(Alignment.Center)
             )
         }
         if(crafteo.description != null) {
             Box(modifier = Modifier
 
-                .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
+                .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
                 .border(
                     BorderStroke(
-                        4.dp,
+                        dimensionResource(id = R.dimen.dimendp4),
                         MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                     )
 
@@ -166,7 +167,7 @@ fun CrafteoConcreto(crafteo: Crafteos, modifier: Modifier = Modifier){
                     text = crafteo.description, modifier = Modifier
                         .fillMaxWidth()
                         .background(MaterialTheme.colorScheme.secondary)
-                        .padding(4.dp),
+                        .padding(dimensionResource(id = R.dimen.dimendp4)),
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )

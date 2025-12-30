@@ -41,11 +41,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.aa1_minecraft.R
 import com.example.aa1_minecraft.clases.DataLoaders
 import com.example.aa1_minecraft.clases.Encantamientos
 import com.example.aa1_minecraft.clases.Mobs
@@ -74,14 +76,14 @@ fun BiomasEscena(
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(16.dp)
+                .padding(dimensionResource(id = R.dimen.dimendp16))
         ) {
 
-            TopTopBar(modifier = Modifier.height(16.dp), 1, onThemeToggle = onThemeToggle)
-            Spacer(modifier = Modifier.height(16.dp))
+            TopTopBar(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)), 1, onThemeToggle = onThemeToggle)
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
 
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
             AnimatedContent(
                 targetState = biomaSeleccionado,
                 transitionSpec = {
@@ -95,14 +97,14 @@ fun BiomasEscena(
                     LazyColumn(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.fillMaxWidth().padding(8.dp)
+                        modifier = Modifier.fillMaxWidth().padding(dimensionResource(id = R.dimen.dimendp8))
                     ) {
 
                         for (i in 0..(biomasFiltrados.size - 1) step 2) {
                             item {
                                 Row(
                                     modifier = Modifier.fillMaxWidth()
-                                        .padding(horizontal = 8.dp),
+                                        .padding(horizontal = dimensionResource(id = R.dimen.dimendp8)),
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
 
@@ -116,7 +118,7 @@ fun BiomasEscena(
                                         }
                                     }
                                 }
-                                Spacer(modifier = Modifier.height(16.dp))
+                                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
                             }
                         }
                     }
@@ -132,11 +134,11 @@ fun BiomaBoton(bioma: Biomas, onClick: () -> Unit) {
     Button(
         onClick = onClick,
         modifier = Modifier
-            .border(BorderStroke(4.dp, MaterialTheme.colorScheme.outline))
-            .size(width = 150.dp, height = 150.dp),
-        contentPadding = PaddingValues(0.dp),
+            .border(BorderStroke(dimensionResource(id = R.dimen.dimendp4), MaterialTheme.colorScheme.outline))
+            .size(width = dimensionResource(id = R.dimen.dimendp150), height = dimensionResource(id = R.dimen.dimendp150)),
+        contentPadding = PaddingValues(dimensionResource(id = R.dimen.dimendpnada)),
         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-        shape = RoundedCornerShape(0.dp)
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada))
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
 
@@ -156,7 +158,7 @@ fun BiomaBoton(bioma: Biomas, onClick: () -> Unit) {
                     text = bioma.name.nombre,
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)
+                    modifier = Modifier.fillMaxWidth().padding(vertical = dimensionResource(id = R.dimen.dimendp2))
                 )
             }
         }
@@ -178,29 +180,29 @@ fun BiomaConcreto(bioma: Biomas, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(dimensionResource(id = R.dimen.dimendp16))
     ) {
 
-        Row(modifier = Modifier.padding(16.dp)) {
+        Row(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimendp16))) {
 
             Image(
                 painter = painterResource(id = bioma.imageResourceID),
                 contentDescription = null,
-                modifier = Modifier.size(150.dp)
+                modifier = Modifier.size(dimensionResource(id = R.dimen.dimendp150))
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.dimendp16)))
 
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start
             ) {
-                Text(text = bioma.name.nombre, textAlign = TextAlign.Center, fontSize = 22.sp)
-                Spacer(modifier = Modifier.height(8.dp))
+                Text(text = bioma.name.nombre, textAlign = TextAlign.Center, style = MaterialTheme.typography.titleLarge)
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp8)))
                 Text(text = bioma.description)
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
 
         // Tabla de información
         InfoRow("Tipo de bioma", bioma.tipoBioma.nombre)
@@ -220,11 +222,11 @@ fun InfoRow(title: String, value: String) {
     ) {
         Box(modifier = Modifier
             .weight(1f)
-            .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-            .padding(2.dp)
+            .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+            .padding(dimensionResource(id = R.dimen.dimendp2))
             .border(
                 BorderStroke(
-                    4.dp,
+                    dimensionResource(id = R.dimen.dimendp4),
                     MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                 )
             )
@@ -235,11 +237,11 @@ fun InfoRow(title: String, value: String) {
         }
         Box(modifier = Modifier
             .weight(1f)
-            .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-            .padding(2.dp)
+            .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+            .padding(dimensionResource(id = R.dimen.dimendp2))
             .border(
                 BorderStroke(
-                    4.dp,
+                    dimensionResource(id = R.dimen.dimendp4),
                     MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f)
                 )
             )

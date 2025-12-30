@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -48,25 +49,25 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(16.dp)
+                .padding(dimensionResource(id = R.dimen.dimendp16))
         ) {
-            TopTopBar(modifier = Modifier.height(16.dp),3, onThemeToggle = onThemeToggle)
-            Spacer(modifier = Modifier.height(16.dp))
+            TopTopBar(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)),3, onThemeToggle = onThemeToggle)
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
             LazyColumn(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp)
+                    .padding(dimensionResource(id = R.dimen.dimendp8))
             ) {
                 for (i in 0..(listaBiblio.size - 1) step 2) {
                     item {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(horizontal = 8.dp),
+                                .padding(horizontal = dimensionResource(id = R.dimen.dimendp8)),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Button(
@@ -74,14 +75,14 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                                 modifier = Modifier
                                     .border(
                                         BorderStroke(
-                                            4.dp,
+                                            dimensionResource(id = R.dimen.dimendp4),
                                             MaterialTheme.colorScheme.outline
                                         )
                                     )
-                                    .size(width = 150.dp, height = 150.dp),
-                                contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                                    .size(width = dimensionResource(id = R.dimen.dimendp150), height = dimensionResource(id = R.dimen.dimendp150)),
+                                contentPadding = PaddingValues(top = dimensionResource(id = R.dimen.dimendp3), bottom = dimensionResource(id = R.dimen.dimendp3)),
                                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                                shape = RoundedCornerShape(0.dp)
+                                shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada))
                             ) {
                                 Box(modifier = Modifier.fillMaxSize()) {
                                     Image(
@@ -93,13 +94,13 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .align(Alignment.BottomCenter)
-                                            .padding(bottom = 5.dp)
+                                            .padding(bottom = dimensionResource(id = R.dimen.dimendp4))
                                     ) {
                                         Text(
                                             text = listaBiblio[i].title,
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                                .padding(4.dp)
+                                                .padding(dimensionResource(id = R.dimen.dimendp4))
                                                 .background(MaterialTheme.colorScheme.onSecondaryContainer),
                                             textAlign = TextAlign.Center,
                                             color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -113,14 +114,14 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                                     modifier = Modifier
                                         .border(
                                             BorderStroke(
-                                                4.dp,
+                                                dimensionResource(id = R.dimen.dimendp4),
                                                 MaterialTheme.colorScheme.outline
                                             )
                                         )
-                                        .size(width = 150.dp, height = 150.dp),
-                                    contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                                        .size(width = dimensionResource(id = R.dimen.dimendp150), height = dimensionResource(id = R.dimen.dimendp150)),
+                                    contentPadding = PaddingValues(top = dimensionResource(id = R.dimen.dimendp3), bottom = dimensionResource(id = R.dimen.dimendp3)),
                                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                                    shape = RoundedCornerShape(0.dp)
+                                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada))
                                 ) {
                                     Box(modifier = Modifier.fillMaxSize()) {
                                         Image(
@@ -132,13 +133,13 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                                             modifier = Modifier
                                                 .fillMaxWidth()
                                                 .align(Alignment.BottomCenter)
-                                                .padding(bottom = 5.dp)
+                                                .padding(bottom = dimensionResource(id = R.dimen.dimendp4))
                                         ) {
                                             Text(
                                                 text = listaBiblio[i + 1].title,
                                                 modifier = Modifier
                                                     .fillMaxWidth()
-                                                    .padding(4.dp)
+                                                    .padding(dimensionResource(id = R.dimen.dimendp4))
                                                     .background(MaterialTheme.colorScheme.onSecondaryContainer),
                                                 textAlign = TextAlign.Center,
                                                 color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -148,7 +149,7 @@ fun GeneralEscena(modifier: Modifier = Modifier, navController: NavController, v
                                 }
                             }
                         }
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
 
                     }
                 }

@@ -36,9 +36,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.aa1_minecraft.R
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
@@ -62,16 +64,16 @@ fun MapaEscena(
             modifier = modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(16.dp)
+                .padding(dimensionResource(id = R.dimen.dimendp16))
         ) {
             // 🔝 Top bar (igual que en MobsEscena)
             TopTopBar(
-                modifier = Modifier.height(16.dp),
+                modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)),
                 5,
                 onThemeToggle = onThemeToggle
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
 
             Box(
                 modifier = Modifier
@@ -86,15 +88,14 @@ fun MapaEscena(
                         )
                         context.startActivity(intent)
                     },modifier = Modifier
-                            .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                        .padding(2.dp)
-                        .border(BorderStroke(4.dp, MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f))),
-                    contentPadding = PaddingValues(all = 8.dp),
+                            .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                        .padding(dimensionResource(id = R.dimen.dimendp2))
+                        .border(BorderStroke(dimensionResource(id = R.dimen.dimendp4), MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.75f))),
+                    contentPadding = PaddingValues(all = dimensionResource(id = R.dimen.dimendp8)),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
-                    shape = RoundedCornerShape(0.dp)){
+                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada))){
                     Text(
                         text = "Abrir SeedMap",
-                        fontSize = 18.sp,
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }

@@ -42,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -57,11 +58,11 @@ fun TopBar(versionActual: Float, onVersionChange: (Float) -> Unit){
     val versiones = listOf(1.7f, 1.8f)
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
         Button(onClick = { expanded =!expanded }, modifier = Modifier
-            .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-            .size(width = 130.dp, height = 50.dp),
-            contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+            .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+            .size(width = 130.dp, height = dimensionResource(id = R.dimen.dimendp50)),
+            contentPadding = PaddingValues(top = dimensionResource(id = R.dimen.dimendp3), bottom = dimensionResource(id = R.dimen.dimendp3)),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
-            shape = RoundedCornerShape(0.dp)) {
+            shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada))) {
             Row {
                 Text(text = "Versión: ")
                 Text(text = versionActual.toString())
@@ -72,7 +73,7 @@ fun TopBar(versionActual: Float, onVersionChange: (Float) -> Unit){
                 DropdownMenuItem(text = { Text(text = item.toString()) }, onClick = { onVersionChange(item); expanded = false })
             }
         }
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.dimendp16)))
         var text by remember { mutableStateOf("Buscar") }
         TextField(value = text, onValueChange = {text = it}, modifier = Modifier.fillMaxWidth(), placeholder = { Text("Buscar") })
     }
@@ -92,12 +93,7 @@ fun TopTopBar(modifier: Modifier = Modifier, nameEscenaID: Int, onThemeToggle: (
     var isDarkTheme by remember { mutableStateOf(false) }
 
     val thumbOffset by animateDpAsState(
-        targetValue = if (isDarkTheme) 24.dp else 0.dp,
-    )
-
-    val trackColor by animateColorAsState(
-        targetValue = if (isDarkTheme) Color(0xFF333333) else Color(0xFFCCCCCC),
-        animationSpec = tween(250)
+        targetValue = if (isDarkTheme) 24.dp else dimensionResource(id = R.dimen.dimendpnada),
     )
 
     var expanded by remember {mutableStateOf(false)}
@@ -109,18 +105,18 @@ fun TopTopBar(modifier: Modifier = Modifier, nameEscenaID: Int, onThemeToggle: (
         Text(
             text = stringResource(listaVentanas[nameEscenaID]),
             modifier = Modifier.weight(0.5f),
-            fontSize = 20.sp,
+            style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.Bold
         )
-        Spacer(modifier = Modifier.width(2.dp))
+        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.dimendp2)))
         Box(modifier = Modifier.weight(0.25f)) {
             Button(
                 onClick = { expanded = !expanded }, modifier = Modifier
-                    .border(BorderStroke(2.dp, MaterialTheme.colorScheme.inverseSurface))
-                    .size(width = 130.dp, height = 50.dp),
-                contentPadding = PaddingValues(top = 3.dp, bottom = 3.dp),
+                    .border(BorderStroke(dimensionResource(id = R.dimen.dimendp2), MaterialTheme.colorScheme.inverseSurface))
+                    .size(width = 130.dp, height = dimensionResource(id = R.dimen.dimendp50)),
+                contentPadding = PaddingValues(top = dimensionResource(id = R.dimen.dimendp3), bottom = dimensionResource(id = R.dimen.dimendp3)),
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
-                shape = RoundedCornerShape(0.dp)
+                shape = RoundedCornerShape(dimensionResource(id = R.dimen.dimendpnada))
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.rallitas),
@@ -151,13 +147,13 @@ fun TopTopBar(modifier: Modifier = Modifier, nameEscenaID: Int, onThemeToggle: (
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text("Tema oscuro")
-                            Spacer(modifier = Modifier.width(5.dp))
+                            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.dimendp5)))
                             Box(
                                 modifier = Modifier
                                     .width(52.dp)
                                     .height(30.dp)
                                     .background(MaterialTheme.colorScheme.inverseSurface)
-                                    .padding(2.dp)
+                                    .padding(dimensionResource(id = R.dimen.dimendp2))
                             ) {
                                 Box(
                                     modifier = Modifier
