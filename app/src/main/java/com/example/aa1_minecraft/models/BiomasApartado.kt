@@ -79,7 +79,7 @@ fun BiomasEscena(
                 .padding(dimensionResource(id = R.dimen.dimendp16))
         ) {
 
-            TopTopBar(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)), 1, onThemeToggle = onThemeToggle)
+            TopTopBar(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)), 7, onThemeToggle = onThemeToggle)
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimendp16)))
 
             TopBar(versionActual = versionActual, onVersionChange = onVersionChange)
@@ -233,7 +233,10 @@ fun InfoRow(title: String, value: String) {
             .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text(title, color = MaterialTheme.colorScheme.onSecondary)
+            Text(text = title,
+                color = MaterialTheme.colorScheme.onSecondary,
+                textAlign = TextAlign.Center,
+                maxLines = 2)
         }
         Box(modifier = Modifier
             .weight(1f)

@@ -74,7 +74,7 @@ fun TopBar(versionActual: Float, onVersionChange: (Float) -> Unit){
             }
         }
         Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.dimendp16)))
-        var text by remember { mutableStateOf("Buscar") }
+        var text by remember { mutableStateOf("") }
         TextField(value = text, onValueChange = {text = it}, modifier = Modifier.fillMaxWidth(), placeholder = { Text("Buscar") })
     }
 }
@@ -88,7 +88,8 @@ fun TopTopBar(modifier: Modifier = Modifier, nameEscenaID: Int, onThemeToggle: (
         R.string.nameNavegador,
         R.string.nameCrafteo,
         R.string.nameMapa,
-        R.string.nameSkins
+        R.string.nameSkins,
+        R.string.nameBiomas
     )
     var isDarkTheme by remember { mutableStateOf(false) }
 
